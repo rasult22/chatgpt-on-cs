@@ -113,7 +113,7 @@ const PluginPage = ({ appId, instanceId }: PluginPageProps) => {
       setCustomPlugins([
         {
           type: 'custom',
-          title: '创建自定义工具',
+          title: 'Создать пользовательский инструмент',
           description: '',
           tags: [],
         },
@@ -135,9 +135,9 @@ const PluginPage = ({ appId, instanceId }: PluginPageProps) => {
   const handleActivate = async (plugin: Plugin) => {
     if (!config) return;
     try {
-      // 检查一下插件类型，如果是自定义插件，直接激活
+      // Проверка типа плагина: если пользовательский, активировать напрямую
       if (plugin.source === 'custom' && plugin.id) {
-        // FIXME: 这个 usePlugin 需要独立配置
+        // FIXME: usePlugin нужно настраивать отдельно
         const newConfig = { ...config, usePlugin: true, pluginId: plugin.id };
         setConfig(newConfig);
         updateConfig({
