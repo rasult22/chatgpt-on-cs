@@ -8,9 +8,9 @@ type GlobalSwitchProps = {
 
 const GlobalSwitch = ({ isGlobal, setIsGlobal }: GlobalSwitchProps) => (
   <Flex mt={3} alignItems="center">
-    <Tooltip label="该关键词是否面向全部平台，否则请选择一个适用的平台">
+    <Tooltip label="Будет ли это ключевое слово действовать для всех платформ? В противном случае выберите платформу">
       <HStack spacing={4} width="100%">
-        <Text fontSize="large">开启全局关键词</Text>
+        <Text fontSize="large">Включить глобальное ключевое слово</Text>
         <Switch
           isChecked={isGlobal}
           onChange={() => setIsGlobal(!isGlobal)}

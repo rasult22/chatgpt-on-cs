@@ -35,10 +35,10 @@ const ThirdPartyInterface: React.FC<ThirdPartyInterfaceProps> = ({
 }) => (
   <>
     <FormControl>
-      <FormLabel htmlFor="llmType">选择大模型类型</FormLabel>
+      <FormLabel htmlFor="llmType">Выберите тип LLM</FormLabel>
       <Select
         id="llmType"
-        placeholder="选择大模型类型"
+        placeholder="Выберите тип LLM"
         value={config.llmType}
         onChange={(e) => handleUpdateConfig({ llmType: e.target.value })}
       >
@@ -51,11 +51,11 @@ const ThirdPartyInterface: React.FC<ThirdPartyInterfaceProps> = ({
     </FormControl>
 
     <FormControl>
-      <FormLabel htmlFor="model">选择或输入模型</FormLabel>
+      <FormLabel htmlFor="model">Выберите или введите модель</FormLabel>
       <InputGroup>
         <Input
           id="model"
-          placeholder="选择或输入模型"
+          placeholder="Выберите или введите модель"
           value={config.model}
           onChange={(e) => handleUpdateConfig({ model: e.target.value })}
           list="models"
@@ -73,23 +73,23 @@ const ThirdPartyInterface: React.FC<ThirdPartyInterfaceProps> = ({
     <FormControl>
       <FormLabel htmlFor="gptAddress" mt="8px">
         <Highlight query="/v1" styles={{ px: '1', py: '1', bg: 'orange.100' }}>
-          API 地址设置（尾部需要加上 /v1）
+          Настройка адреса API (в конце необходимо добавить /v1)
         </Highlight>
         <Button
           size="sm"
           colorScheme="blue"
           ml="4"
-          loadingText="检查中"
+          loadingText="Проверка..."
           onClick={handleCheckHealth}
         >
-          检查连接
+          Проверить подключение
         </Button>
       </FormLabel>
       <InputGroup size="sm">
         <Input
           id="gptAddress"
           value={config.baseUrl}
-          placeholder="输入站点地址"
+          placeholder="Введите адрес сайта"
           onChange={handleBaseURLChange}
         />
       </InputGroup>
@@ -102,7 +102,7 @@ const ThirdPartyInterface: React.FC<ThirdPartyInterfaceProps> = ({
           id="apiKey"
           pr="4.5rem"
           type={show ? 'text' : 'password'}
-          placeholder="Enter password"
+          placeholder="Введите пароль"
           value={config.key}
           onChange={(e) => handleUpdateConfig({ key: e.target.value })}
         />
@@ -122,7 +122,7 @@ const ThirdPartyInterface: React.FC<ThirdPartyInterfaceProps> = ({
 
     {reply && (
       <>
-        <Text>回复内容</Text>
+        <Text>Содержимое ответа</Text>
         <Text>{reply}</Text>
       </>
     )}

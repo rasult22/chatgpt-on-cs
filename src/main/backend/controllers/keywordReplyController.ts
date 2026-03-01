@@ -33,9 +33,9 @@ export class KeywordReplyController {
   }
 
   async importExcel(path: string) {
-    // 先校验文件是否存在，不存在则抛出异常
+    // Сначала проверяем существование файла, если не существует — выбрасываем исключение
     if (!fs.existsSync(path)) {
-      throw new Error('文件不存在');
+      throw new Error('Файл не существует');
     }
 
     const workbook = new ExcelJS.Workbook();
@@ -43,12 +43,12 @@ export class KeywordReplyController {
     const worksheet = workbook.worksheets[0];
 
     if (worksheet.rowCount === 0) {
-      throw new Error('文件内容为空');
+      throw new Error('Содержимое файла пусто');
     }
 
     const data = await this.getApps();
     if (!data) {
-      throw new Error('获取平台信息失败');
+      throw new Error('Не удалось получить информацию о платформе');
     }
 
     const ALL_PLATFORMS = data.data;
@@ -62,7 +62,7 @@ export class KeywordReplyController {
 
     const autoReplies: any = [];
 
-    // 从第三行开始读取数据（跳过标题）
+    // Чтение данных с третьей строки (пропуск заголовка)
     worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
       if (rowNumber > 2) {
         const keyword = row.getCell(1).text.trim();
@@ -79,7 +79,7 @@ export class KeywordReplyController {
         autoReplies.push({
           keyword: String(keyword),
           reply: String(reply),
-          mode: 'fuzzy', // 废弃字段，这里只是兼容旧数据
+          mode: 'fuzzy', // Устаревшее поле, оставлено для совместимости со старыми данными
           platform_id: String(platformId),
           fuzzy,
           has_regular,
@@ -90,11 +90,11 @@ export class KeywordReplyController {
     const originalAutoReplies = await Keyword.findAll();
 
     try {
-      // 先删除所有数据
+      // Сначала удаляем все данные
       await Keyword.destroy({ where: {} });
       await Keyword.bulkCreate(autoReplies);
     } catch (error) {
-      // 如果插入失败，回滚数据
+      // При ошибке вставки откатываем данные
       // @ts-ignore
       await Keyword.bulkCreate(originalAutoReplies);
       throw error;

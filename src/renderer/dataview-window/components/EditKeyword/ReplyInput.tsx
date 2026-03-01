@@ -47,9 +47,9 @@ const ReplyInput = ({
   <>
     <Flex mb="8px" mt="22px">
       <Text mr={2} fontSize={'large'} fontWeight={'bold'}>
-        回复内容
+        Содержимое ответа
       </Text>
-      <Tooltip label="添加的多个关键词只要一个匹配上了，将会触发回复，如果有多个回复，将会随机选择一个回复。">
+      <Tooltip label="Если хотя бы одно из добавленных ключевых слов совпадёт, будет отправлен ответ. При наличии нескольких ответов один из них выбирается случайно.">
         <Box color={'gray.500'}>
           <Icon as={FiHelpCircle} w={6} h={6} />
         </Box>
@@ -60,26 +60,26 @@ const ReplyInput = ({
         <Markdown content={currentPlatform.desc} />
       </Box>
     )}
-    <Tooltip label="在拼多多平台等平台，是不允许每次重复一个回答的，所以可以插入一个随机符，以规避这个问题">
+    <Tooltip label="На платформах типа Pinduoduo не допускается повторение одного и того же ответа; вставьте случайный символ">
       <Button onClick={handleInsertRandomChar} mt="4" mr={4} colorScheme="teal">
-        插入随机符
+        Вставить случайный символ
       </Button>
     </Tooltip>
-    <Tooltip label="有些无法发送文件或者图片的平台无法使用该文件">
+    <Tooltip label="На некоторых платформах, не поддерживающих отправку файлов или изображений, эта функция недоступна">
       <Button
         leftIcon={<AttachmentIcon />}
         mt="4"
         onClick={handleInsertFile}
         colorScheme="orange"
       >
-        插入文件
+        Вставить файл
       </Button>
     </Tooltip>
     <Stack direction="row" mt="4">
       <MyTextarea
         mb="4"
         maxLength={200}
-        placeholder="回复内容"
+        placeholder="Содержимое ответа"
         value={newReply}
         onChange={(e) => setNewReply(e.target.value)}
       />

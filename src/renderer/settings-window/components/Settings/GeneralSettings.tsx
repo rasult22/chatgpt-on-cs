@@ -64,7 +64,7 @@ const GeneralSettings = ({
         const errormsg =
           error instanceof Error ? error.message : JSON.stringify(error);
         toast({
-          title: '获取配置失败',
+          title: 'Не удалось получить конфигурацию',
           description: errormsg,
           status: 'error',
           duration: 5000,

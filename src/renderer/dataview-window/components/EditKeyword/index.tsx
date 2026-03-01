@@ -228,7 +228,7 @@ const EditKeyword = ({
             <Box m={2}>
               <FormControl display="flex" alignItems="center">
                 <FormLabel htmlFor="regular" mb="0">
-                  正则匹配
+                  Совпадение по регулярному выражению
                 </FormLabel>
                 <Switch
                   id="regular"
@@ -270,10 +270,10 @@ const EditKeyword = ({
         </ModalBody>
         <ModalFooter>
           <Button colorScheme="blue" mr={3} onClick={handleSave}>
-            保存
+            Сохранить
           </Button>
           <Button variant="ghost" onClick={onClose}>
-            取消
+            Отмена
           </Button>
         </ModalFooter>
       </ModalContent>

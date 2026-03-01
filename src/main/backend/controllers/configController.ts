@@ -242,7 +242,7 @@ export class ConfigController {
   }
 
   /**
-   * 检查配置是否激活
+   * Проверка активности конфигурации
    * @param
    * @returns
    */
@@ -258,7 +258,7 @@ export class ConfigController {
   }
 
   /**
-   * 取得指定类型的配置
+   * Получение конфигурации указанного типа
    * @param appId
    * @param instanceId
    * @param type
@@ -339,7 +339,7 @@ export class ConfigController {
   }
 
   /**
-   * 更新配置
+   * Обновление конфигурации
    * @param
    */
   public async updateConfigByType({
@@ -398,7 +398,7 @@ export class ConfigController {
         plugin_id: pluginId,
       });
     } else if (type === 'driver') {
-      // TODO: 目前只有全局配置，后续再实现实例配置
+      // TODO: Пока только глобальная конфигурация, конфигурация экземпляров будет реализована позже
       const config = cfg as DriverConfig;
       dbConfig = await Config.findOne({
         where: { global: true },
@@ -424,7 +424,7 @@ export class ConfigController {
   }
 
   /**
-   * 更新配置
+   * Обновление конфигурации
    * @param
    */
   public async moveMouseHandler(): Promise<boolean> {
@@ -436,7 +436,7 @@ export class ConfigController {
       return false;
     }
 
-    // 检查是否开启了鼠标移动自动暂停功能
+    // Проверка включения автопаузы при движении мыши
     if (dbConfig.has_mouse_close) {
       if (!dbConfig.has_paused) {
         await dbConfig.update({
@@ -459,7 +459,7 @@ export class ConfigController {
       return false;
     }
 
-    // 检查是否开启了 ESC 键自动暂停功能
+    // Проверка включения автопаузы по клавише ESC
     if (dbConfig.has_esc_close) {
       if (!dbConfig.has_paused) {
         await dbConfig.update({
@@ -474,7 +474,7 @@ export class ConfigController {
   }
 
   /**
-   * 查找配置
+   * Поиск конфигурации
    * @param appId
    * @param instanceId
    * @returns

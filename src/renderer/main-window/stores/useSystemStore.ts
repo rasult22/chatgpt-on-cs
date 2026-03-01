@@ -7,9 +7,9 @@ const electronStore = {
   getItem: (key: string) => {
     const value = window.electron.store.get(key);
     try {
-      return JSON.parse(value); // 确保字符串被正确解析为对象
+      return JSON.parse(value); // Убедиться, что строка корректно разобрана как объект
     } catch (error) {
-      return null; // 解析失败时返回null或合理的默认值
+      return null; // При ошибке разбора возвращаем null или разумное значение по умолчанию
     }
   },
   setItem: (key: string, value: any) => {
