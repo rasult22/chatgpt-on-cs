@@ -74,7 +74,7 @@ const PluginEdit = () => {
       const errormsg =
         error instanceof Error ? error.message : JSON.stringify(error);
       toast({
-        title: '新增插件失败',
+        title: 'Не удалось добавить плагин',
         position: 'top',
         description: errormsg,
         status: 'error',
@@ -89,9 +89,9 @@ const PluginEdit = () => {
     try {
       await deleteCustomPlugin(plugin.id);
       toast({
-        title: '删除插件成功',
+        title: 'Плагин удалён успешно',
         position: 'top',
-        description: '插件已删除',
+        description: 'Плагин удалён',
         status: 'success',
         duration: 3000,
         isClosable: true,
@@ -100,7 +100,7 @@ const PluginEdit = () => {
       const errormsg =
         error instanceof Error ? error.message : JSON.stringify(error);
       toast({
-        title: '删除插件失败',
+        title: 'Не удалось удалить плагин',
         position: 'top',
         description: errormsg,
         status: 'error',
@@ -120,7 +120,7 @@ const PluginEdit = () => {
       const errormsg =
         error instanceof Error ? error.message : JSON.stringify(error);
       toast({
-        title: '更新插件失败',
+        title: 'Не удалось обновить плагин',
         position: 'top',
         description: errormsg,
         status: 'error',
@@ -149,7 +149,7 @@ const PluginEdit = () => {
       const errormsg =
         error instanceof Error ? error.message : JSON.stringify(error);
       toast({
-        title: '更新插件失败',
+        title: 'Не удалось обновить плагин',
         position: 'top',
         description: errormsg,
         status: 'error',
