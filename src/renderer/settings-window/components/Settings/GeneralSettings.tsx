@@ -100,7 +100,7 @@ const GeneralSettings = ({
       const errormsg =
         error instanceof Error ? error.message : JSON.stringify(error);
       toast({
-        title: '更新配置失败',
+        title: 'Не удалось обновить конфигурацию',
         description: errormsg,
         status: 'error',
         duration: 5000,
@@ -110,13 +110,13 @@ const GeneralSettings = ({
   };
 
   const getReplySpeedStr = () => {
-    if (!config) return '0 秒';
+    if (!config) return '0 сек.';
     if (config.replyRandomSpeed === 0) {
-      // 保留两位小数
-      return `${config.replySpeed.toFixed(2)} 秒`;
+      // Оставить два десятичных знака
+      return `${config.replySpeed.toFixed(2)} сек.`;
     }
 
-    return `${config.replySpeed.toFixed(2)} 秒 ~ ${(config.replySpeed + config.replyRandomSpeed).toFixed(2)} 秒`;
+    return `${config.replySpeed.toFixed(2)} сек. ~ ${(config.replySpeed + config.replyRandomSpeed).toFixed(2)} сек.`;
   };
 
   const selectFolderPath = () => {

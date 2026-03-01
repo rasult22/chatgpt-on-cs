@@ -162,11 +162,11 @@ const EditKeyword = ({
       }
 
       if (updatedReplace.keyword === '') {
-        throw new Error('关键词不能为空');
+        throw new Error('Ключевое слово не может быть пустым');
       }
 
       if (updatedReplace.replace === '') {
-        throw new Error('替换用的关键词不能为空');
+        throw new Error('Содержимое для замены не может быть пустым');
       }
 
       if (updatedReplace.id) {
@@ -192,7 +192,7 @@ const EditKeyword = ({
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
-          {editKeyword?.id ? '编辑替换关键词' : '新增替换关键词'}
+          {editKeyword?.id ? 'Редактирование замены ключевых слов' : 'Добавление замены ключевых слов'}
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
@@ -211,7 +211,7 @@ const EditKeyword = ({
             <Box m={2}>
               <FormControl display="flex" alignItems="center">
                 <FormLabel htmlFor="fuzzy" mb="0">
-                  模糊匹配
+                  Нечёткое совпадение
                 </FormLabel>
                 <Switch
                   id="fuzzy"
@@ -223,7 +223,7 @@ const EditKeyword = ({
             <Box m={2}>
               <FormControl display="flex" alignItems="center">
                 <FormLabel htmlFor="regular" mb="0">
-                  正则匹配
+                  Совпадение по регулярному выражению
                 </FormLabel>
                 <Switch
                   id="regular"
@@ -264,10 +264,10 @@ const EditKeyword = ({
         </ModalBody>
         <ModalFooter>
           <Button colorScheme="blue" mr={3} onClick={handleSave}>
-            保存
+            Сохранить
           </Button>
           <Button variant="ghost" onClick={onClose}>
-            取消
+            Отмена
           </Button>
         </ModalFooter>
       </ModalContent>

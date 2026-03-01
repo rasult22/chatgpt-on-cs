@@ -104,7 +104,7 @@ export class KeywordReplyController {
   async exportExcel() {
     const data = await this.getApps();
     if (!data) {
-      throw new Error('获取平台信息失败');
+      throw new Error('Не удалось получить информацию о платформе');
     }
 
     const ALL_PLATFORMS = data.data;
@@ -119,9 +119,9 @@ export class KeywordReplyController {
     const autoReplies = await Keyword.findAll();
 
     const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet('自动回复');
+    const worksheet = workbook.addWorksheet('Автоответ');
 
-    // 设置列宽
+    // Установка ширины столбцов
     worksheet.columns = [
       { key: 'keyword', width: 32 },
       { key: 'reply', width: 100 },
@@ -130,22 +130,22 @@ export class KeywordReplyController {
       { key: 'has_regular', width: 10 },
     ];
 
-    // 添加复杂的标题描述并设置换行和加粗
-    worksheet.mergeCells('A1:C1'); // 合并第一行的三个单元格
+    // Добавление описания заголовка с переносом строк и жирным шрифтом
+    worksheet.mergeCells('A1:C1'); // Объединение трёх ячеек первой строки
     const titleCell = worksheet.getCell('A1');
-    titleCell.value = `匹配关键词：
-    * 有时候我们希望能匹配多个关键词时，可以使用 “|” 分隔不同的关键词
-    * 模糊匹配使用 “*” 符号，例如 “你好*”，那么只要用户输入的内容以 “你好” 开头就会回复你设置的回复内容.
-    * 开始结束匹配符，可以使用 “啥时[and]发货” 这样表达，那么只要用户输入的内容以 “啥时” 开头，并且以 “发货” 结尾，就能匹配上你设置的关键词
-回复内容：
-    * 有时候我们希望能有多个随机回答，可以使用 “[or]” 来分隔不同的句子；
-    * 使用 “[~]” 表示一个随机符，在拼多多平台等平台，是不允许每次重复一个回答的，所以可以插入一个随机符，以规避这个问题；
-    * 可以使用 “[@]” 和 “[/@]” 包裹图片地址，如果支持图片发送的平台则可以直接发送这个文件
+    titleCell.value = `Совпадение ключевых слов:
+    * Для совпадения нескольких ключевых слов используйте «|» для разделения
+    * Для нечёткого совпадения используйте «*», например «привет*» — совпадёт всё, что начинается с «привет»
+    * Для совпадения начала и конца используйте «когда[and]доставка» — совпадёт, если сообщение начинается с «когда» и заканчивается на «доставка»
+Содержимое ответа:
+    * Для нескольких случайных ответов используйте «[or]» для разделения
+    * Используйте «[~]» для вставки случайного символа (на Pinduoduo нельзя повторять один ответ)
+    * Используйте «[@]» и «[/@]» для указания пути к файлу/изображению
 
-可使用的平台名称：${
+Доступные платформы: ${
       ALL_PLATFORMS.length > 0
         ? ALL_PLATFORMS.map((platform) => platform.name).join('、')
-        : '暂无平台'
+        : 'Платформы отсутствуют'
     }`;
     titleCell.font = { bold: true };
     titleCell.alignment = {
