@@ -132,7 +132,7 @@ const PluginCard = ({
                 variant="outline"
                 mr={2}
               />
-              <Text fontWeight="bold">创建自定义工具</Text>
+              <Text fontWeight="bold">Создать пользовательский инструмент</Text>
             </HStack>
           </Flex>
           <Divider my={4} />
