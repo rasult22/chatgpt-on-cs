@@ -211,9 +211,9 @@ const PluginPage = ({ appId, instanceId }: PluginPageProps) => {
     <ChakraProvider>
       <Tabs index={tabIndex} onChange={(index) => setTabIndex(index)}>
         <TabList>
-          <Tab>系统内置</Tab>
-          <Tab>用户分享</Tab>
-          <Tab>自定义</Tab>
+          <Tab>Системные</Tab>
+          <Tab>Пользовательские</Tab>
+          <Tab>Собственные</Tab>
         </TabList>
 
         <TabPanels>

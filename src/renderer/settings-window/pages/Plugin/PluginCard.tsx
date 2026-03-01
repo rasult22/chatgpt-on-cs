@@ -45,7 +45,7 @@ const PluginCard = ({
     >
       {plugin.type === 'plugin' && (
         <Flex position="absolute" top={2} right={2}>
-          <Tooltip label="激活插件" aria-label="Activate Plugin">
+          <Tooltip label="Активировать плагин" aria-label="Activate Plugin">
             <IconButton
               icon={<FaCheck />}
               aria-label="Activate Plugin"
@@ -73,7 +73,7 @@ const PluginCard = ({
           py={2}
           borderBottomLeftRadius="md"
         >
-          已激活
+          Активирован
         </Box>
       )}
 
@@ -106,7 +106,7 @@ const PluginCard = ({
               href="https://doc.lazaytools.top/category/%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E4%BB%8B%E7%BB%8D"
               isExternal
             >
-              <Text ml={2}>查看指南</Text>
+              <Text ml={2}>Посмотреть руководство</Text>
             </Link>
           </Flex>
         </Flex>
@@ -142,7 +142,7 @@ const PluginCard = ({
               href="https://doc.lazaytools.top/category/%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E4%BB%8B%E7%BB%8D"
               isExternal
             >
-              <Text ml={2}>查看指南</Text>
+              <Text ml={2}>Посмотреть руководство</Text>
             </Link>
           </Flex>
         </Flex>
