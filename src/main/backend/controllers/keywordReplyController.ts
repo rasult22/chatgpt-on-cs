@@ -539,9 +539,9 @@ export class KeywordReplyController {
   }
 
   async importReplaceExcel(path: string) {
-    // 先校验文件是否存在，不存在则抛出异常
+    // Сначала проверяем существование файла, если не существует — выбрасываем исключение
     if (!fs.existsSync(path)) {
-      throw new Error('文件不存在');
+      throw new Error('Файл не существует');
     }
 
     const workbook = new ExcelJS.Workbook();
@@ -551,12 +551,12 @@ export class KeywordReplyController {
     const worksheet = workbook.worksheets[0];
 
     if (worksheet.rowCount === 0) {
-      throw new Error('文件内容为空');
+      throw new Error('Содержимое файла пусто');
     }
 
     const data = await this.getApps();
     if (!data) {
-      throw new Error('获取平台信息失败');
+      throw new Error('Не удалось получить информацию о платформе');
     }
 
     const ALL_PLATFORMS = data.data;
@@ -570,7 +570,7 @@ export class KeywordReplyController {
 
     const autoReplies: any = [];
 
-    // 从第三行开始读取数据（跳过标题）
+    // Чтение данных с третьей строки (пропуск заголовка)
     worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
       if (rowNumber > 2) {
         const keyword = row.getCell(1).text.trim();
@@ -597,11 +597,11 @@ export class KeywordReplyController {
     const originalAutoReplies = await ReplaceKeyword.findAll();
 
     try {
-      // 先删除所有数据
+      // Сначала удаляем все данные
       await ReplaceKeyword.destroy({ where: {} });
       await ReplaceKeyword.bulkCreate(autoReplies);
     } catch (error) {
-      // 如果插入失败，回滚数据
+      // При ошибке вставки откатываем данные
       // @ts-ignore
       await ReplaceKeyword.bulkCreate(originalAutoReplies);
       throw error;
@@ -611,7 +611,7 @@ export class KeywordReplyController {
   async exportReplaceExcel() {
     const data = await this.getApps();
     if (!data) {
-      throw new Error('获取平台信息失败');
+      throw new Error('Не удалось получить информацию о платформе');
     }
 
     const ALL_PLATFORMS = data.data;
@@ -626,9 +626,9 @@ export class KeywordReplyController {
     const autoReplies = await ReplaceKeyword.findAll();
 
     const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet('关键词替换');
+    const worksheet = workbook.addWorksheet('Замена ключевых слов');
 
-    // 设置列宽
+    // Установка ширины столбцов
     worksheet.columns = [
       { key: 'keyword', width: 32 },
       { key: 'replace', width: 100 },

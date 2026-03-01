@@ -275,9 +275,9 @@ const GeneralSettings = ({
 
       <Flex mt={3}>
         <Text mb="8px" mr={3}>
-          等待人工间隔: {config.waitHumansTime}秒
+          Интервал ожидания оператора: {config.waitHumansTime} сек.
         </Text>
-        <Tooltip label="多长时间没有回复则通知人工接入，单位秒">
+        <Tooltip label="Время без ответа, после которого подключается оператор (в секундах)">
           <Box color={'gray.500'}>
             <Icon as={FiHelpCircle} w={6} h={6} />
           </Box>
@@ -298,9 +298,9 @@ const GeneralSettings = ({
 
       <Flex mt={3}>
         <Text mb="8px" mr={3}>
-          字数截断设置: {config.truncateWordCount}
+          Настройка обрезки по количеству символов: {config.truncateWordCount}
         </Text>
-        <Tooltip label="当回复的字数超过设置的字数时，将会截断回复内容，并转为新发一条回复">
+        <Tooltip label="Если длина ответа превышает установленное значение, ответ обрезается и продолжается в новом сообщении">
           <Box color={'gray.500'}>
             <Icon as={FiHelpCircle} w={6} h={6} />
           </Box>
@@ -324,8 +324,8 @@ const GeneralSettings = ({
       <FormControl mt={3}>
         <FormLabel>
           {' '}
-          <Tooltip label="当匹配到这个关键词时，自动截断消息，转为新发一条回复，不写则不根据关键词截断">
-            <Text mb="8px">截断关键词</Text>
+          <Tooltip label="При совпадении с этим ключевым словом сообщение обрезается и продолжается в новом сообщении; оставьте пустым, чтобы не использовать">
+            <Text mb="8px">Ключевое слово для обрезки</Text>
           </Tooltip>
         </FormLabel>
         <Flex>
