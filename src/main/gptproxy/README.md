@@ -1,2 +1,2 @@
 
-fork from https://github.com/zhengxs2018/ai
+форк из https://github.com/zhengxs2018/ai

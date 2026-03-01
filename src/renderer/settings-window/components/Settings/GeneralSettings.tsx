@@ -138,8 +138,8 @@ const GeneralSettings = ({
     } else {
       toast({
         position: 'top',
-        title: '未选择文件夹',
-        description: '请先选择一个文件夹路径。',
+        title: 'Папка не выбрана',
+        description: 'Сначала выберите путь к папке.',
         status: 'warning',
         duration: 5000,
         isClosable: true,
@@ -164,7 +164,7 @@ const GeneralSettings = ({
         isChecked={config.extractPhone}
         onChange={(e) => handleUpdateConfig({ extractPhone: e.target.checked })}
       >
-        提取手机号
+        Извлекать номер телефона
       </Checkbox>
       <Checkbox
         mr={4}
@@ -173,19 +173,19 @@ const GeneralSettings = ({
           handleUpdateConfig({ extractProduct: e.target.checked })
         }
       >
-        提取咨询商品名
+        Извлекать название товара
       </Checkbox>
 
       <FormControl mt={3}>
-        <FormLabel>提取内容存储路径</FormLabel>
+        <FormLabel>Путь сохранения извлечённых данных</FormLabel>
         <Flex>
           <Input
             isReadOnly
             value={config.savePath}
-            placeholder="选择文件夹路径"
+            placeholder="Выберите путь к папке"
           />
           <Button ml={2} onClick={selectFolderPath}>
-            选择
+            Выбрать
           </Button>
         </Flex>
       </FormControl>
@@ -196,7 +196,7 @@ const GeneralSettings = ({
         w={'100%'}
         onClick={openSelectedFolder}
       >
-        打开本地文件夹
+        Открыть локальную папку
       </Button>
 
       <Divider />
@@ -204,13 +204,13 @@ const GeneralSettings = ({
       <FormControl mt={3}>
         <FormLabel>
           {' '}
-          <Tooltip label="接口报错，或者没有匹配到回复时的返回值">
-            <Text mb="8px">默认回复</Text>
+          <Tooltip label="Значение по умолчанию при ошибке API или отсутствии совпадений">
+            <Text mb="8px">Ответ по умолчанию</Text>
           </Tooltip>
         </FormLabel>
         <Flex>
           <Input
-            placeholder="输入默认回复内容"
+            placeholder="Введите текст ответа по умолчанию"
             value={config.defaultReply}
             disabled
             onChange={(e) =>

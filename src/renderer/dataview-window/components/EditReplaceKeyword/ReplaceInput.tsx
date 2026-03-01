@@ -32,9 +32,9 @@ const ReplaceInput = ({
   <>
     <Flex mb="8px" mt="22px">
       <Text mr={2} fontSize={'large'} fontWeight={'bold'}>
-        替换
+        Замена
       </Text>
-      <Tooltip label="添加的多个关键词只要一个匹配上了，将会触发替换，如果有多个替换，将会随机选择一个替换。">
+      <Tooltip label="Если хотя бы одно из добавленных ключевых слов совпадёт, будет выполнена замена. При наличии нескольких вариантов замены один из них выбирается случайно.">
         <Box color={'gray.500'}>
           <Icon as={FiHelpCircle} w={6} h={6} />
         </Box>
@@ -45,16 +45,16 @@ const ReplaceInput = ({
         <Markdown content={currentPlatform.desc} />
       </Box>
     )}
-    <Tooltip label="在拼多多平台等平台，是不允许每次重复一个回答的，所以可以插入一个随机符，以规避这个问题">
+    <Tooltip label="На платформах типа Pinduoduo не допускается повторение одного и того же ответа; вставьте случайный символ">
       <Button onClick={handleInsertRandomChar} mt="4" mr={4} colorScheme="teal">
-        插入随机符
+        Вставить случайный символ
       </Button>
     </Tooltip>
     <Stack direction="row" mt="4">
       <MyTextarea
         mb="4"
         maxLength={200}
-        placeholder="替换内容"
+        placeholder="Содержимое для замены"
         value={newReplace}
         onChange={(e) => setNewReplace(e.target.value)}
       />

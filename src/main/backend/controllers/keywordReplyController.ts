@@ -156,14 +156,14 @@ export class KeywordReplyController {
     worksheet.getRow(1).height = 150;
 
     worksheet.addRow([
-      '匹配关键词',
-      '回复内容',
-      '平台',
-      '模糊匹配',
-      '支持正则',
+      'Ключевое слово для совпадения',
+      'Содержимое ответа',
+      'Платформа',
+      'Нечёткое совпадение',
+      'Регулярное выражение',
     ]);
 
-    // 添加数据行
+    // Добавление строк данных
     autoReplies.forEach((autoReply) => {
       const name = platformMap.get(autoReply.platform_id) || '';
       worksheet.addRow([
@@ -175,13 +175,13 @@ export class KeywordReplyController {
       ]);
     });
 
-    // 检查是否存在 excels 文件夹，不存在则创建
+    // Проверка существования папки excels, если не существует — создаём
     if (!fs.existsSync(`${getTempPath()}/excels`)) {
       fs.mkdirSync(`${getTempPath()}/excels`);
     }
 
-    // 保存文件
-    const filePath = `${getTempPath()}/excels/自动回复-${Date.now()}.xlsx`;
+    // Сохранение файла
+    const filePath = `${getTempPath()}/excels/Автоответ-${Date.now()}.xlsx`;
     await workbook.xlsx.writeFile(filePath);
     return filePath;
   }
@@ -336,9 +336,9 @@ export class KeywordReplyController {
   }
 
   async importTransferExcel(path: string) {
-    // 先校验文件是否存在，不存在则抛出异常
+    // Сначала проверяем существование файла, если не существует — выбрасываем исключение
     if (!fs.existsSync(path)) {
-      throw new Error('文件不存在');
+      throw new Error('Файл не существует');
     }
 
     const workbook = new ExcelJS.Workbook();
@@ -346,12 +346,12 @@ export class KeywordReplyController {
     const worksheet = workbook.worksheets[0];
 
     if (worksheet.rowCount === 0) {
-      throw new Error('文件内容为空');
+      throw new Error('Содержимое файла пусто');
     }
 
     const data = await this.getApps();
     if (!data) {
-      throw new Error('获取平台信息失败');
+      throw new Error('Не удалось получить информацию о платформе');
     }
 
     const ALL_PLATFORMS = data.data;
@@ -365,7 +365,7 @@ export class KeywordReplyController {
 
     const autoReplies: any = [];
 
-    // 从第三行开始读取数据（跳过标题）
+    // Чтение данных с третьей строки (пропуск заголовка)
     worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
       if (rowNumber > 2) {
         const keyword = row.getCell(1).text.trim();
@@ -390,11 +390,11 @@ export class KeywordReplyController {
     const originalAutoReplies = await TransferKeyword.findAll();
 
     try {
-      // 先删除所有数据
+      // Сначала удаляем все данные
       await TransferKeyword.destroy({ where: {} });
       await TransferKeyword.bulkCreate(autoReplies);
     } catch (error) {
-      // 如果插入失败，回滚数据
+      // При ошибке вставки откатываем данные
       // @ts-ignore
       await TransferKeyword.bulkCreate(originalAutoReplies);
       throw error;
@@ -406,7 +406,7 @@ export class KeywordReplyController {
   async exportTransferExcel() {
     const data = await this.getApps();
     if (!data) {
-      throw new Error('获取平台信息失败');
+      throw new Error('Не удалось получить информацию о платформе');
     }
 
     const ALL_PLATFORMS = data.data;
@@ -421,9 +421,9 @@ export class KeywordReplyController {
     const autoReplies = await TransferKeyword.findAll();
 
     const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet('转人工');
+    const worksheet = workbook.addWorksheet('Перевод на оператора');
 
-    // 设置列宽
+    // Установка ширины столбцов
     worksheet.columns = [
       { key: 'keyword', width: 32 },
       { key: 'fuzzy', width: 10 },

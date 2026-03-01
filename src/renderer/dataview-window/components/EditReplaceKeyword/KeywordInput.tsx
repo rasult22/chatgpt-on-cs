@@ -36,9 +36,9 @@ const KeywordInput = ({
   <>
     <Flex mb="8px" mt="12px">
       <Text mr={2} fontSize={'large'} fontWeight={'bold'}>
-        关键词设置
+        Настройка ключевых слов
       </Text>
-      <Tooltip label="设置关键词以匹配具体的回复，命中关键词的问题，不会使用 GPT 进行回答">
+      <Tooltip label="Настройте ключевые слова для точного ответа; вопросы с совпадением ключевых слов не отправляются в GPT">
         <Box color={'gray.500'}>
           <Icon as={FiHelpCircle} w={6} h={6} />
         </Box>
@@ -46,11 +46,11 @@ const KeywordInput = ({
     </Flex>
     <Stack direction="row" mb="4">
       <Input
-        placeholder="新增关键词"
+        placeholder="Новое ключевое слово"
         value={newKeyword}
         onChange={(e) => setNewKeyword(e.target.value)}
       />
-      <Tooltip label="新增一条关键词，可以使用 * 字符模糊匹配，如果要输入 * 字符，则使用 \* 代替">
+      <Tooltip label="Добавить ключевое слово; используйте * для нечёткого совпадения, \* для ввода символа *">
         <Button onClick={handleAddKeyword} colorScheme="green">
           <AddIcon />
         </Button>
@@ -58,16 +58,16 @@ const KeywordInput = ({
     </Stack>
     <Stack direction="row" mb="4">
       <Input
-        placeholder="起始匹配关键词"
+        placeholder="Начальное ключевое слово"
         value={startKeyword}
         onChange={(e) => setStartKeyword(e.target.value)}
       />
       <Input
-        placeholder="结束匹配关键词"
+        placeholder="Конечное ключевое слово"
         value={endKeyword}
         onChange={(e) => setEndKeyword(e.target.value)}
       />
-      <Tooltip label="新增一个范围关键词，如果匹配上了开始关键词和结束关键词，也能匹配成功">
+      <Tooltip label="Добавить диапазонное ключевое слово; при совпадении начального и конечного ключевых слов считается успешным">
         <Button onClick={handleAddFuzzyKeyword} colorScheme="green">
           <AddIcon />
         </Button>

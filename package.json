@@ -1,6 +1,6 @@
 {
   "name": "chatgpt-on-cs",
-  "description": "多平台智能客服，允许使用 ChatGPT 作为客服机器人",
+  "description": "Мультиплатформенный умный клиентский сервис с ChatGPT в качестве бота поддержки",
   "version": "1.4.5",
   "keywords": [
     "electron",

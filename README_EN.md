@@ -1,106 +1,106 @@
-# Lazy customer service   
-**English** · [中文](README.md) 
+# Ленивый клиентский сервис
+**Русский** · [中文](README.md)
 
-This project is an intelligent customer service tool based on large models, supporting access to platforms such as WeChat, Taobao, Bilibili, Douyin Enterprise Account, Douyin, Douyin Store, Weibo Chat, Xiaohongshu Professional Account Operation, Xiaohongshu, Zhihu, etc. It can choose GPT3.5/GPT4.0 (more platforms will be supported in the future), handle text, voice, and images, access external resources such as operating systems and the Internet through plugins, and support customization of enterprise AI applications based on its own knowledge base.
+Этот проект представляет собой инструмент умной клиентской поддержки на основе больших моделей, поддерживающий подключение к таким платформам, как WeChat, Taobao, Bilibili, корпоративный аккаунт Douyin, Douyin, Doudian, чат Weibo, управление профессиональным аккаунтом Xiaohongshu, Xiaohongshu, Zhihu и другие. Позволяет выбрать GPT3.5/GPT4.0 (в будущем будет поддержка дополнительных платформ), обрабатывает текст, голос и изображения, через плагины обращается к внешним ресурсам — операционной системе и интернету, поддерживает создание корпоративных ИИ-приложений на основе собственной базы знаний.
 
-**Note** : This project is just a customer service tool for connecting to external platforms and does not provide any platform accounts, which need to be prepared by yourself. Additionally, the knowledge base function also needs to be prepared by yourself. Currently, this project only supports integration with OpenAI's API interface (or proxy).
+**Примечание**: Этот проект является лишь инструментом клиентской поддержки для подключения к внешним платформам и не предоставляет аккаунты на платформах — их необходимо подготовить самостоятельно. Кроме того, функцию базы знаний также необходимо настроить самостоятельно. В настоящее время проект поддерживает интеграцию только с API-интерфейсом OpenAI (или прокси).
 
 * [GitHub] https://github.com/lrhh123/ChatGPT-On-CS
-* [Gitee] https://gitee.com/alsritter/ChatGPT-On-CS · (国内用户推荐)
+* [Gitee] https://gitee.com/alsritter/ChatGPT-On-CS · (рекомендуется для пользователей из Китая)
 
-# Main function
-- [x] Multi-platform support: Currently supports platforms such as WeChat, Taobao, Bilibili, Douyin Enterprise Account, Douyin, Dou Store, Weibo Chat, Xiaohongshu Professional Account Management, Xiaohongshu, Zhihu, and more. Will continue to expand support for more social media platforms in the future.
-- [x] Default reply content: Allows users to set custom replies to solve common issues and improve response efficiency.
-- [x] Access to the ChatGPT interface, generates replies intelligently based on customer inquiries, suitable for handling complex or personalized customer inquiries.
-- [x] Sending images and binary files: Supports sending images and other binary files to meet the customer service needs of simulators.
-- [x] Knowledge base: Customize the robot by uploading knowledge base files, can be used as a digital clone, intelligent customer service, or private domain assistant.
-- [x] Each platform has an independent plugin system, supports plugins accessing external resources such as the internet, and supports enterprise AI applications customized based on proprietary knowledge bases.
+# Основные функции
+- [x] Мультиплатформенная поддержка: В настоящее время поддерживаются WeChat, Taobao, Bilibili, корпоративный аккаунт Douyin, Douyin, Doudian, чат Weibo, управление профессиональным аккаунтом Xiaohongshu, Xiaohongshu, Zhihu и другие платформы. В будущем поддержка будет расширена на дополнительные социальные сети.
+- [x] Шаблоны ответов по умолчанию: Позволяет пользователям настраивать пользовательские ответы для решения типичных вопросов и повышения скорости реагирования.
+- [x] Подключение к интерфейсу ChatGPT — интеллектуальная генерация ответов на основе запросов клиентов, подходит для обработки сложных или персонализированных обращений.
+- [x] Отправка изображений и бинарных файлов: Поддержка отправки изображений и других бинарных файлов для удовлетворения потребностей клиентской поддержки с использованием эмуляторов.
+- [x] База знаний: Настройка бота путём загрузки файлов базы знаний — может использоваться как цифровой клон, умная клиентская поддержка или приватный ассистент.
+- [x] Каждая платформа имеет независимую систему плагинов, поддерживает доступ плагинов к внешним ресурсам, таким как интернет, и поддерживает корпоративные ИИ-приложения, настроенные на основе собственных баз знаний.
 
-# Presentation video
-[Watch video](https://www.bilibili.com/video/BV1qz421Q73S)
+# Демонстрационное видео
+[Смотреть видео](https://www.bilibili.com/video/BV1qz421Q73S)
 
-# Open source community
-If you have any feedback or features you would like to support for the project, you can add the assistant's WeChat to join the open source project discussion group:
+# Сообщество открытого кода
+Если у вас есть обратная связь или предложения по функциям проекта, вы можете добавить ассистента в WeChat, чтобы присоединиться к группе обсуждения проекта с открытым кодом:
 
-![微信扫码添加客服](docs/contact.png)
+![Отсканируйте QR-код WeChat для добавления службы поддержки](docs/contact.png)
 
-<!-- 
+<!--
 
-# Business support
-We also provide an enterprise-level AI application platform, including capabilities such as knowledge base, Agent plugins, application management, supporting multi-platform aggregated application access, client management, conversation management, and providing various modes such as SaaS services, private deployment, stable hosting access, etc.
+# Поддержка для бизнеса
+Мы также предоставляем корпоративную ИИ-платформу приложений, включающую такие возможности, как база знаний, плагины Agent, управление приложениями, поддержка мультиплатформенного агрегированного доступа к приложениям, управление клиентами, управление диалогами, а также различные режимы — SaaS-сервис, приватное развёртывание, стабильный хостинг и т.д.
 
-Currently, we have accumulated rich AI solutions in scenarios such as private domain operation, intelligent customer service, and enterprise efficiency assistants. We have also developed best practices for AI implementation in various industries such as e-commerce, education, health, and new consumption. We are committed to building a one-stop platform to help small and medium-sized enterprises embrace AI. For enterprise services and commercial consulting, please contact our product consultants.
+В настоящее время мы накопили богатый опыт ИИ-решений в таких сценариях, как работа с приватным трафиком, умная клиентская поддержка и корпоративные ассистенты эффективности. Мы также разработали лучшие практики внедрения ИИ в различных отраслях — электронная коммерция, образование, здравоохранение, новое потребление. Мы стремимся создать универсальную платформу, которая поможет малому и среднему бизнесу освоить ИИ. По вопросам корпоративного обслуживания и коммерческого консалтинга обращайтесь к нашим продуктовым консультантам.
 
-![微信扫码添加客服](docs/contact.png) -->
+![Отсканируйте QR-код WeChat для добавления службы поддержки](docs/contact.png) -->
 
-# Download link
-<a href="https://github.com/lrhh123/ChatGPT-On-CS/releases/download/v1.0.2/1.0.2.exe" style="display: inline-block; background-color: #008CBA; color: white; padding: 10px 20px; text-align: center; text-decoration: none; font-weight: bold; border-radius: 5px; margin: 4px 2px; cursor: pointer;">download</a>
+# Ссылка для скачивания
+<a href="https://github.com/lrhh123/ChatGPT-On-CS/releases/download/v1.0.2/1.0.2.exe" style="display: inline-block; background-color: #008CBA; color: white; padding: 10px 20px; text-align: center; text-decoration: none; font-weight: bold; border-radius: 5px; margin: 4px 2px; cursor: pointer;">скачать</a>
 
-# Instructions
-The first startup may be a bit slow as it needs to download driver files and initialize the reply database, so please be patient.
+# Инструкции
+Первый запуск может быть немного медленным, так как необходимо загрузить файлы драйверов и инициализировать базу данных ответов, пожалуйста, подождите.
 
-### 1. Set up GPT Address
-After launching the program, click on the settings button, set up your OpenAPI Key and proxy server address, then click save.
+### 1. Настройка адреса GPT
+После запуска программы нажмите кнопку настроек, установите ваш OpenAPI Key и адрес прокси-сервера, затем нажмите «Сохранить».
 
-![alt text](docs/first_settings_1.png)
+![альтернативный текст](docs/first_settings_1.png)
 
-![alt text](docs/first_settings_2.png)
+![альтернативный текст](docs/first_settings_2.png)
 
-### 2. Instructions for Homepage Operations
-First, you can see the "Connection" section on the homepage, with two checkboxes. By default, the software is paused. If you want the software to start working, uncheck this checkbox.
+### 2. Инструкции по работе с главной страницей
+На главной странице вы увидите раздел «Подключение» с двумя флажками. По умолчанию программа приостановлена. Если вы хотите, чтобы программа начала работать, снимите этот флажок.
 
-![alt text](docs/home_settings_1.png)
+![альтернативный текст](docs/home_settings_1.png)
 
-When first opened, it defaults to not being logged in. So, you need to manually pause it, then log in, and then uncheck the pause to start working.
+При первом открытии по умолчанию вход в систему не выполнен. Поэтому вам нужно сначала вручную поставить паузу, затем войти в систему, а потом снять паузу, чтобы начать работу.
 
-![alt text](docs/home_settings_2.png)
+![альтернативный текст](docs/home_settings_2.png)
 
-After enabling automatic replies, it will read the platforms you have selected below and automatically open those pages to start working. Note that the checkboxes above cannot be clicked because the author does not have accounts for those platforms, so they cannot debug the platform's information. If you have accounts for these platforms and need support for automatic replies, please contact the customer service above.
+После включения автоматических ответов система прочитает выбранные вами платформы и автоматически откроет их страницы для начала работы. Обратите внимание, что некоторые флажки выше нельзя нажать, потому что у автора нет аккаунтов на этих платформах и, соответственно, нет возможности отладить работу с ними. Если у вас есть аккаунты на этих платформах и вам нужна поддержка автоматических ответов, свяжитесь со службой поддержки, указанной выше.
 
-### 3. Writing Keywords
-When the "Enable Keyword Matching" above is checked, it will prioritize matching the keywords set here. If a keyword is matched, it will reply with the corresponding reply. If no keyword is matched, it will call on you to provide the ChatGPT API at the bottom to ask GPT to answer the user's question.
+### 3. Настройка ключевых слов
+Когда включена опция «Включить сопоставление ключевых слов», система будет в первую очередь сопоставлять установленные здесь ключевые слова. Если ключевое слово найдено, система ответит соответствующим ответом. Если ключевое слово не найдено, система обратится к API ChatGPT, указанному ниже, чтобы GPT ответил на вопрос пользователя.
 
-![alt text](docs/reply_settings_1.png)
+![альтернативный текст](docs/reply_settings_1.png)
 
-Clicking the "Add Keyword" button allows you to customize keywords and reply content.
+Нажатие кнопки «Добавить ключевое слово» позволяет настроить ключевые слова и содержимое ответов.
 
-![alt text](docs/reply_settings_2.png)
+![альтернативный текст](docs/reply_settings_2.png)
 
-You can add several matching keywords.
+Вы можете добавить несколько ключевых слов для сопоставления.
 
-**Writing Rule Keywords**
-- `Hello`：It will reply with the response you set whenever the user inputs "Hello".
+**Правила написания ключевых слов**
+- `Привет`: Система ответит заданным вами ответом каждый раз, когда пользователь введёт «Привет».
 
-- `Hello*`：For fuzzy matching using the * symbol. For example, "Hello*", whenever the user inputs something like "Hello", it will reply with the response you set.
+- `Привет*`: Нечёткое сопоставление с использованием символа *. Например, «Привет*» — когда пользователь введёт что-то вроде «Привет», система ответит заданным вами ответом.
 
-- `*Hello*`：If the set keyword is "Hello", then whenever the user's input contains
+- `*Привет*`: Если установлено ключевое слово «Привет», то всякий раз, когда ввод пользователя содержит это слово, будет выдан соответствующий ответ.
 
-**Special Case**： If you use the "Start Keyword" and "End Keyword" below, then the user's input only needs to start with the "Start Keyword" and end with the "End Keyword" to match the keywords you've set up.
+**Особый случай**: Если вы используете «Начальное ключевое слово» и «Конечное ключевое слово» ниже, то ввод пользователя должен лишь начинаться с «Начального ключевого слова» и заканчиваться «Конечным ключевым словом», чтобы соответствовать установленным вами ключевым словам.
 
-### 4. Writing Replies
-- `Keyword rules：`You can correspond to multiple reply contents. When a keyword is matched, it will randomly select one as the reply content.
+### 4. Написание ответов
+- `Правила ключевых слов:` Одному ключевому слову может соответствовать несколько вариантов ответа. При совпадении ключевого слова система случайным образом выберет один из вариантов в качестве ответа.
 
-- `Insert random symbols：` This is because platforms like Pinduoduo do not allow repeating the same answer each time, so you can insert a random symbol to avoid this issue.
+- `Вставить случайный символ:` Это связано с тем, что такие платформы, как Pinduoduo, не позволяют каждый раз повторять один и тот же ответ, поэтому можно вставить случайный символ для решения этой проблемы.
 
-- `Insert file：` This is mainly used for inserting images. You can insert the link to an image, allowing you to reply with a picture.
+- `Вставить файл:` Используется в основном для вставки изображений. Вы можете вставить ссылку на изображение, чтобы ответить картинкой.
 
-### 5. Platform Independent ChatGPT API Settings
-Sometimes, we might need to set different ChatGPT API addresses for different platforms. You can do this here. You can create your own knowledge base based on [Lazy person's treasure trove](https://chat.lazaytools.top/) and then set it here.
+### 5. Независимые настройки API ChatGPT для каждой платформы
+Иногда может потребоваться установить разные адреса API ChatGPT для разных платформ. Это можно сделать здесь. Вы можете создать собственную базу знаний на основе [Сокровищница ленивого человека](https://chat.lazaytools.top/) и затем настроить её здесь.
 
-![alt text](docs/other_settings_1.png)
+![альтернативный текст](docs/other_settings_1.png)
 
-When a platform-specific ChatGPT API address is set, it will prioritize using this address to call the ChatGPT API. If not set, it will use the global ChatGPT API address set above.
-### 6. Customer Service Related Settings
-![alt text](docs/other_settings_2.png)
+Когда для платформы установлен специальный адрес API ChatGPT, система будет в первую очередь использовать этот адрес для вызова API ChatGPT. Если он не установлен, будет использоваться глобальный адрес API ChatGPT, заданный выше.
+### 6. Настройки клиентской поддержки
+![альтернативный текст](docs/other_settings_2.png)
 
-**Extract Information**: When selected for extracting phone numbers or querying product names, it will extract the phone number or product name from the user's message and store it in the path below.
+**Извлечение информации**: При выборе извлечения номеров телефонов или запроса названий товаров система извлечёт номер телефона или название товара из сообщения пользователя и сохранит их по указанному ниже пути.
 
-**Wait for Reply Time**: After a user sends a message, it will wait this long before replying. If you want an immediate reply, you can set this value to zero.
+**Время ожидания ответа**: После отправки сообщения пользователем система будет ждать указанное время перед ответом. Если вы хотите мгновенный ответ, установите это значение равным нулю.
 
-**Context Message Count**: When using the ChatGPT API, it will take a specified number of chat contexts to call the ChatGPT API, helping the ChatGPT API better understand the user's questions. Note that the larger this value, the slower the call to the ChatGPT API.
+**Количество сообщений контекста**: При использовании API ChatGPT система будет брать указанное количество сообщений из контекста чата для вызова API ChatGPT, помогая API ChatGPT лучше понять вопросы пользователя. Обратите внимание: чем больше это значение, тем медленнее вызов API ChatGPT.
 
-**Wait for Manual Interval**: When encountering ChatGPT blocking, it will wait this long before terminating the automatic customer service task and transferring it to manual customer service for manual processing.
+**Интервал ожидания ручного управления**: При блокировке ChatGPT система будет ждать указанное время, прежде чем завершить задачу автоматической клиентской поддержки и передать её оператору для ручной обработки.
 
-## Project Plan
-- [ ] Support platforms such as Pinduoduo, Taobao, JD.com, and other e-commerce platforms (if urgent, please private message the assistant).
-- [ ] Support loading local models.
+## План проекта
+- [ ] Поддержка таких платформ, как Pinduoduo, Taobao, JD.com и других платформ электронной коммерции (если срочно, напишите личное сообщение ассистенту).
+- [ ] Поддержка загрузки локальных моделей.
