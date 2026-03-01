@@ -696,8 +696,8 @@ export class KeywordReplyController {
   }
 
   /**
-   * FIXME: 为了避免依赖注入，这里直接通过网络请求获取所有平台，后续优化
-   * @returns 所有平台
+   * FIXME: Для избежания внедрения зависимостей, здесь используется сетевой запрос для получения всех платформ; будет оптимизировано позже
+   * @returns все платформы
    */
   async getApps() {
     const { data } = await axios.get<{

@@ -93,8 +93,8 @@ export class PluginService {
   ): Promise<ReplyDTO> {
     const plugin = await this.configController.getPluginConfig(plugin_id);
     if (!plugin) {
-      // 有可能插件被删除了，这里直接使用默认插件
-      this.log.info('使用默认插件');
+      // Возможно, плагин был удалён; используется плагин по умолчанию
+      this.log.info('Используется плагин по умолчанию');
       const result = await this.executePluginCode(
         PluginDefaultRunCode,
         ctx,
@@ -107,7 +107,7 @@ export class PluginService {
       const { data } = await this.executePluginCode(plugin.code, ctx, messages);
       return { ...data };
     } catch (error) {
-      this.log.error(`插件执行失败: ${error}`);
+      this.log.error(`Ошибка выполнения плагина: ${error}`);
       throw error;
     }
   }
@@ -185,12 +185,12 @@ export class PluginService {
       vm.runInContext(pluginCode, sandbox);
 
       if (typeof sandbox.module.exports !== 'function') {
-        this.log.error('插件格式错误，请检查是否导出函数');
+        this.log.error('Неверный формат плагина, проверьте экспортируемую функцию');
         throw new Error('Plugin does not export a function');
       }
 
       if (!messages || messages.length === 0) {
-        this.log.error('未提供消息给插件');
+        this.log.error('Сообщения для плагина не предоставлены');
         throw new Error('No messages provided to the plugin');
       }
 
@@ -213,11 +213,11 @@ export class PluginService {
         return { data: data as ReplyDTO, consoleOutput };
       }
 
-      this.log.error(`未返回有效响应，插件返回数据: ${JSON.stringify(data)}`);
+      this.log.error(`Не получен валидный ответ, данные плагина: ${JSON.stringify(data)}`);
       throw new Error('Plugin function did not return a valid response', data);
     } catch (error: any) {
       console.error('Plugin execution error:', error);
-      this.log.error(`运行插件的日志信息: ${JSON.stringify(consoleOutput)}`);
+      this.log.error(`Информация из лога выполнения плагина: ${JSON.stringify(consoleOutput)}`);
       this.log.error(
         `回复失败: ${error instanceof Error ? error.message : String(error)}`,
       );

@@ -13,7 +13,7 @@ import {
 const AccountSettings = () => {
   const [activationCode, setActivationCode] = useState('');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [expiryDate, setExpiryDate] = useState('2024-12-31'); // 你可以根据需要动态设置
+  const [expiryDate, setExpiryDate] = useState('2024-12-31'); // можно настроить динамически по необходимости
   const [activationStatus, setActivationStatus] = useState('');
   const [isExpired, setIsExpired] = useState(false);
 
@@ -26,13 +26,13 @@ const AccountSettings = () => {
   }, [expiryDate]);
 
   const handleActivation = () => {
-    // 在这里添加激活逻辑
+    // Здесь добавляется логика активации
     if (activationCode && !isExpired) {
-      setActivationStatus('激活失败');
+      setActivationStatus('Ошибка активации');
     } else if (isExpired) {
-      setActivationStatus('激活码已过期');
+      setActivationStatus('Код активации истёк');
     } else {
-      setActivationStatus('请输入有效的激活码');
+      setActivationStatus('Введите действительный код активации');
     }
   };
 
@@ -40,9 +40,9 @@ const AccountSettings = () => {
     <ChakraProvider>
       <Container>
         <VStack spacing="4" align="start" mt="8">
-          <Text>输入激活码</Text>
+          <Text>Введите код активации</Text>
           <Input
-            placeholder="激活码"
+            placeholder="Код активации"
             value={activationCode}
             onChange={(e) => setActivationCode(e.target.value)}
             isDisabled={isExpired}
