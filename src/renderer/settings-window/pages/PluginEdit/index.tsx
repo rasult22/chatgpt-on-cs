@@ -46,8 +46,8 @@ const PluginEdit = () => {
 
   const [plugin, setPlugin] = useState<Plugin>(
     currentPlugin || {
-      title: '新建插件',
-      description: '这是一个自定义插件~',
+      title: 'Новый плагин',
+      description: 'Это пользовательский плагин',
       code: PluginExampleCode,
       icon: '😀',
       tags: [],
@@ -63,9 +63,9 @@ const PluginEdit = () => {
         code: plugin.code || PluginExampleCode,
       });
       toast({
-        title: '新增插件成功',
+        title: 'Плагин добавлен успешно',
         position: 'top',
-        description: '插件已添加',
+        description: 'Плагин добавлен',
         status: 'success',
         duration: 3000,
         isClosable: true,
