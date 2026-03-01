@@ -36,16 +36,16 @@ const ReplyInput = ({
         </Box>
       </Tooltip>
     </Flex>
-    <Tooltip label="在拼多多平台等平台，是不允许每次重复一个回答的，所以可以插入一个随机符，以规避这个问题">
+    <Tooltip label="На платформах типа Pinduoduo не допускается повторение одного и того же ответа; вставьте случайный символ, чтобы обойти это ограничение">
       <Button onClick={handleInsertRandomChar} mt="4" mr={4} colorScheme="teal">
-        插入随机符
+        Вставить случайный символ
       </Button>
     </Tooltip>
     <Stack direction="row" mt="4">
       <MyTextarea
         mb="4"
         maxLength={200}
-        placeholder="回复内容"
+        placeholder="Содержимое ответа"
         value={newReply}
         onChange={(e) => setNewReply(e.target.value)}
       />

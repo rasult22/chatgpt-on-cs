@@ -248,7 +248,7 @@ async function initDb(): Promise<void> {
     await ReplaceKeyword.bulkCreate(replaces);
   }
 
-  // 因为 Plugin 1.0.0 版本不支持了，这里直接删除
+  // Поскольку Plugin v1.0.0 больше не поддерживается, удаляем
   await Plugin.destroy({
     where: {
       version: '1.0.0',
