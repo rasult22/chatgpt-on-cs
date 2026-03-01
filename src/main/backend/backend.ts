@@ -665,7 +665,7 @@ class BKServer {
     });
 
     // Health check endpoint
-    // TODO: 后续需要根据通过 WS 去检查后端服务是否健康
+    // TODO: В дальнейшем проверка работоспособности бэкенда через WS
     this.app.get('/api/v1/base/health', async (req, res) => {
       try {
         const resp = await this.dispatchService.checkHealth();
@@ -684,7 +684,7 @@ class BKServer {
       }
     });
 
-    // 检查 GPT 链接是否正常
+    // Проверка работоспособности GPT-соединения
     this.app.post('/api/v1/base/gpt/health', async (req, res) => {
       const { cfg } = req.body;
       try {
@@ -699,7 +699,7 @@ class BKServer {
       }
     });
 
-    // 检查插件是否正常工作
+    // Проверка работоспособности плагина
     this.app.post('/api/v1/base/plugin/check', async (req, res) => {
       try {
         const { code, messages, ctx } = req.body;
@@ -721,7 +721,7 @@ class BKServer {
       }
     });
 
-    // 获取任务列表
+    // Получение списка задач
     this.app.get('/api/v1/strategy/tasks', async (req, res) => {
       try {
         const tasks = await this.appService.getTasks();
@@ -738,7 +738,7 @@ class BKServer {
       }
     });
 
-    // 添加任务
+    // Добавление задачи
     this.app.post('/api/v1/strategy/tasks', async (req, res) => {
       const { appId } = req.body;
       try {
@@ -756,7 +756,7 @@ class BKServer {
       }
     });
 
-    // 删除任务
+    // Удаление задачи
     this.app.post('/api/v1/strategy/task/remove', async (req, res) => {
       const { taskId } = req.body;
       try {
@@ -773,7 +773,7 @@ class BKServer {
     });
   }
 
-  // 启动服务器的方法
+  // Метод запуска сервера
   start() {
     return new Promise((resolve, reject) => {
       this.server = this.server
@@ -785,7 +785,7 @@ class BKServer {
     });
   }
 
-  // 停止服务器的方法
+  // Метод остановки сервера
   stop() {
     return new Promise((resolve, reject) => {
       if (this.server) {

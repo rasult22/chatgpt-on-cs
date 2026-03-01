@@ -28,9 +28,9 @@ const ReplyInput = ({
   <>
     <Flex mb="8px" mt="22px">
       <Text mr={2} fontSize={'large'} fontWeight={'bold'}>
-        回复内容
+        Содержимое ответа
       </Text>
-      <Tooltip label="添加的多个关键词只要一个匹配上了，将会触发回复，如果有多个回复，将会随机选择一个回复。">
+      <Tooltip label="Если хотя бы одно из добавленных ключевых слов совпадёт, будет отправлен ответ. При наличии нескольких ответов один из них выбирается случайно.">
         <Box color={'gray.500'}>
           <Icon as={FiHelpCircle} w={6} h={6} />
         </Box>

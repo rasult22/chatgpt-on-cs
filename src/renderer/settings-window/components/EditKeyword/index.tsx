@@ -110,10 +110,10 @@ const EditKeyword = ({
         </ModalBody>
         <ModalFooter>
           <Button colorScheme="blue" mr={3} onClick={handleSave}>
-            保存
+            Сохранить
           </Button>
           <Button variant="ghost" onClick={onClose}>
-            取消
+            Отмена
           </Button>
         </ModalFooter>
       </ModalContent>

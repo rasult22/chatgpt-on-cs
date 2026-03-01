@@ -35,7 +35,7 @@ export const sequelize = new Sequelize({
   logging: console.log,
 });
 
-// 初始化模型
+// Инициализация моделей
 initConfig(sequelize);
 initSession(sequelize);
 initMessage(sequelize);
@@ -45,7 +45,7 @@ initInstance(sequelize);
 initTransfer(sequelize);
 initReplace(sequelize);
 
-// 异步初始化和数据填充函数
+// Асинхронная инициализация и заполнение данных
 async function initDb(): Promise<void> {
   const fcount = await Config.count();
   if (fcount === 0) {
