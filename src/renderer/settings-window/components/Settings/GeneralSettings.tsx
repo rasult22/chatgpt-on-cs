@@ -330,7 +330,7 @@ const GeneralSettings = ({
         </FormLabel>
         <Flex>
           <Input
-            placeholder="截断关键词"
+            placeholder="Ключевое слово для обрезки"
             max={5}
             value={config.truncateWordKey}
             onChange={(e) =>
@@ -343,13 +343,13 @@ const GeneralSettings = ({
       <FormControl mt={3}>
         <FormLabel>
           {' '}
-          <Tooltip label="因为抖店默认有个不可关闭的首条自动回复，所以如果要自动回复后还能继续回复，这里需要设置的和抖店那个回复内容一致">
-            <Text mb="8px">抖店默认首条回复</Text>
+          <Tooltip label="В Doudian есть неотключаемый первый автоответ; для продолжения автоответа укажите здесь тот же текст">
+            <Text mb="8px">Первый ответ по умолчанию в Doudian</Text>
           </Tooltip>
         </FormLabel>
         <Flex>
           <Input
-            placeholder="抖店默认首条回复"
+            placeholder="Первый ответ по умолчанию в Doudian"
             max={5}
             value={config.jinritemaiDefaultReplyMatch}
             onChange={(e) =>
