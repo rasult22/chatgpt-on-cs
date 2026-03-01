@@ -18,9 +18,9 @@ import {
 import { LLMConfig } from '../../../common/services/platform/platform';
 import ThirdPartyInterface from './ThirdParty';
 
-const LazybonesToolbox: React.FC = () => <Text>懒人百宝箱接入的内容</Text>;
+const LazybonesToolbox: React.FC = () => <Text>Содержимое подключения через Ленивый набор инструментов</Text>;
 
-const UseCoze: React.FC = () => <Text>使用 Coze 的内容</Text>;
+const UseCoze: React.FC = () => <Text>Содержимое для использования Coze</Text>;
 
 interface LLMSettingsProps {
   appId?: string;
@@ -47,7 +47,7 @@ const LLMSettings: React.FC<LLMSettingsProps> = ({ appId, instanceId }) => {
         const errormsg =
           error instanceof Error ? error.message : JSON.stringify(error);
         toast({
-          title: '获取配置失败',
+          title: 'Не удалось получить конфигурацию',
           description: errormsg,
           status: 'error',
           duration: 5000,
@@ -89,7 +89,7 @@ const LLMSettings: React.FC<LLMSettingsProps> = ({ appId, instanceId }) => {
       const errormsg =
         error instanceof Error ? error.message : JSON.stringify(error);
       toast({
-        title: '更新配置失败',
+        title: 'Не удалось обновить конфигурацию',
         description: errormsg,
         status: 'error',
         duration: 5000,
@@ -118,9 +118,9 @@ const LLMSettings: React.FC<LLMSettingsProps> = ({ appId, instanceId }) => {
       setReply(resp.message);
 
       toast({
-        title: '连接成功',
+        title: 'Подключение успешно',
         position: 'top',
-        description: 'GPT 连接成功',
+        description: 'GPT подключён успешно',
         status: 'success',
         duration: 5000,
         isClosable: true,
@@ -129,7 +129,7 @@ const LLMSettings: React.FC<LLMSettingsProps> = ({ appId, instanceId }) => {
       const errormsg =
         error instanceof Error ? error.message : JSON.stringify(error);
       toast({
-        title: '连接失败',
+        title: 'Ошибка подключения',
         position: 'top',
         description: errormsg,
         status: 'error',
@@ -152,15 +152,15 @@ const LLMSettings: React.FC<LLMSettingsProps> = ({ appId, instanceId }) => {
   return (
     <VStack spacing="4" align="start">
       <FormControl>
-        <FormLabel htmlFor="option">选择选项</FormLabel>
+        <FormLabel htmlFor="option">Выберите вариант</FormLabel>
         <Select
           id="option"
           value={selectedOption}
           onChange={(e) => setSelectedOption(e.target.value)}
         >
-          <option value="lazybonesToolbox">懒人百宝箱接入</option>
-          <option value="useCoze">使用 Coze</option>
-          <option value="thirdParty">三方接口接入</option>
+          <option value="lazybonesToolbox">Подключение через Ленивый набор инструментов</option>
+          <option value="useCoze">Использовать Coze</option>
+          <option value="thirdParty">Подключение стороннего API</option>
         </Select>
       </FormControl>
 

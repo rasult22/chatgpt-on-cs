@@ -77,7 +77,7 @@ const TransferKeyword = () => {
 
   const handleInsertFile = () => {
     window.electron.ipcRenderer.sendMessage('select-file', {
-      filters: [{ name: 'Excel 模板', extensions: ['xls', 'xlsx'] }],
+      filters: [{ name: 'Шаблон Excel', extensions: ['xls', 'xlsx'] }],
     });
     window.electron.ipcRenderer.once('selected-file', async (path) => {
       const selectedPath = path as string[];
@@ -88,15 +88,15 @@ const TransferKeyword = () => {
         await updateTransferExcel({ path: selectedPath[0] });
         refetch();
         toast({
-          title: '导入成功',
-          description: '导入成功',
+          title: 'Импорт успешен',
+          description: 'Импорт успешен',
           position: 'top',
           status: 'success',
           duration: 3000,
           isClosable: true,
         });
       } catch (e) {
-        let message = '导入失败';
+        let message = 'Ошибка импорта';
         if (e instanceof Error) {
           message = e.message;
         } else if (typeof e === 'string') {
@@ -106,7 +106,7 @@ const TransferKeyword = () => {
         }
 
         toast({
-          title: '导入失败',
+          title: 'Ошибка импорта',
           description: message,
           position: 'top',
           status: 'error',
@@ -124,15 +124,15 @@ const TransferKeyword = () => {
       setUpdated(true);
       await exportTransferExcel();
       toast({
-        title: '导出成功',
-        description: '导出成功',
+        title: 'Экспорт успешен',
+        description: 'Экспорт успешен',
         position: 'top',
         status: 'success',
         duration: 3000,
         isClosable: true,
       });
     } catch (e) {
-      let message = '导出失败';
+      let message = 'Ошибка экспорта';
       if (e instanceof Error) {
         message = e.message;
       } else if (typeof e === 'string') {
@@ -142,7 +142,7 @@ const TransferKeyword = () => {
       }
 
       toast({
-        title: '导出失败',
+        title: 'Ошибка экспорта',
         description: message,
         position: 'top',
         status: 'error',
@@ -184,7 +184,7 @@ const TransferKeyword = () => {
     <Box>
       <Box display="flex" justifyContent="space-between" mb={2}>
         <Alert status="info" mr={'20px'}>
-          匹配用户的输入，当用户输入的内容包含关键词时，自动转移会话给人工客服
+          Совпадение по вводу пользователя: когда сообщение пользователя содержит ключевое слово, диалог автоматически переводится на живого оператора
         </Alert>
         <Flex alignItems="center">
           <HStack>
@@ -200,9 +200,9 @@ const TransferKeyword = () => {
               onClick={handleAddKeyword}
               isLoading={updated}
             >
-              新增关键词
+              Добавить ключевое слово
             </Button>
-            <Tooltip label="导入并覆盖关键词">
+            <Tooltip label="Импортировать и перезаписать ключевые слова">
               <Button
                 size="sm"
                 variant="solid"
@@ -210,17 +210,17 @@ const TransferKeyword = () => {
                 onClick={handleInsertFile}
                 isLoading={updated}
               >
-                覆盖导入
+                Импорт с перезаписью
               </Button>
             </Tooltip>
-            <Tooltip label="导出关键词（下载模板）">
+            <Tooltip label="Экспорт ключевых слов (скачать шаблон)">
               <Button
                 size="sm"
                 variant="solid"
                 onClick={handleExportReplyExcel}
                 isLoading={updated}
               >
-                导出
+                Экспорт
               </Button>
             </Tooltip>
           </HStack>
@@ -230,11 +230,11 @@ const TransferKeyword = () => {
         <Table variant="striped" size="sm" className="table-tiny">
           <Thead>
             <Tr>
-              <Th>平台</Th>
-              <Th>关键词</Th>
-              <Th>模糊匹配</Th>
-              <Th>正则</Th>
-              <Th>操作</Th>
+              <Th>Платформа</Th>
+              <Th>Ключевое слово</Th>
+              <Th>Нечёткое совпадение</Th>
+              <Th>Регулярное выражение</Th>
+              <Th>Действия</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -253,11 +253,11 @@ const TransferKeyword = () => {
                 >
                   {keyword.keyword}
                 </Td>
-                <Td>{keyword.fuzzy ? '是' : '否'}</Td>
-                <Td>{keyword.has_regular ? '是' : '否'}</Td>
+                <Td>{keyword.fuzzy ? 'Да' : 'Нет'}</Td>
+                <Td>{keyword.has_regular ? 'Да' : 'Нет'}</Td>
                 <Td>
                   <Grid templateColumns="repeat(2, 1fr)" gap={2}>
-                    <Tooltip label="删除">
+                    <Tooltip label="Удалить">
                       <IconButton
                         size="xs"
                         fontSize="13px"
@@ -267,7 +267,7 @@ const TransferKeyword = () => {
                         onClick={() => keyword.id && handleDelete(keyword.id)}
                       />
                     </Tooltip>
-                    <Tooltip label="编辑">
+                    <Tooltip label="Редактировать">
                       <IconButton
                         size="xs"
                         fontSize="13px"

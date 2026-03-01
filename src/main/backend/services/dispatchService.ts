@@ -60,7 +60,7 @@ export class DispatchService {
 
       let reply: ReplyDTO;
 
-      // 检查是否使用插件
+      // Проверка использования плагина
       const cfg = await this.configController.get(ctxMap);
       await this.messageService.extractMsgInfo(cfg, ctxMap, msgs);
 
@@ -72,7 +72,7 @@ export class DispatchService {
             msgs,
           );
 
-          this.log.info(`使用自定义插件回复: ${reply.content}`);
+          this.log.info(`Ответ с использованием пользовательского плагина: ${reply.content}`);
         } else {
           const reply_data = await this.pluginService.executePluginCode(
             PluginDefaultRunCode,
@@ -85,9 +85,9 @@ export class DispatchService {
       } catch (error) {
         console.error('Failed to execute plugin', error);
         this.log.error(
-          `回复失败: ${
+          `Ошибка ответа: ${
             error instanceof Error ? error.message : String(error)
-          }，使用默认回复`,
+          }, используется ответ по умолчанию`,
         );
 
         reply = await this.messageService.getDefaultReply(cfg);
@@ -96,7 +96,7 @@ export class DispatchService {
       callback(reply);
 
       if (reply.type !== 'NO_REPLY') {
-        // 回复后保存消息
+        // Сохранение сообщения после ответа
         await this.messageController.saveMessages(ctxMap, reply, msgs);
       }
     });
@@ -142,7 +142,7 @@ export class DispatchService {
         return false;
       }
 
-      let jdr = '很高兴为您服务，请问有什么可以帮您？';
+      let jdr = 'Рады помочь! Чем могу быть полезен?';
       if ('jinritemaiDefaultReplyMatch' in cfg) {
         jdr = cfg.jinritemaiDefaultReplyMatch || '';
       }

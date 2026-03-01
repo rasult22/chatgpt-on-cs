@@ -16,7 +16,7 @@ interface ResponseDataType {
 }
 
 /**
- * 请求开始
+ * Начало запроса
  */
 function requestStart(
   config: InternalAxiosRequestConfig,
@@ -25,17 +25,17 @@ function requestStart(
 }
 
 /**
- * 请求成功,检查请求头
+ * Запрос успешен, проверка заголовков
  */
 function responseSuccess(response: AxiosResponse<ResponseDataType>) {
   return response;
 }
 /**
- * 响应数据检查
+ * Проверка данных ответа
  */
 function checkRes(data: ResponseDataType) {
   if (data === undefined) {
-    return Promise.reject('服务器异常');
+    return Promise.reject('Ошибка сервера');
   }
   if (data?.code && (data.code < 200 || data.code >= 400)) {
     return Promise.reject(data);
@@ -44,45 +44,45 @@ function checkRes(data: ResponseDataType) {
 }
 
 /**
- * 响应错误
+ * Ошибка ответа
  */
 function responseError(err: any) {
   if (!err) {
-    return Promise.reject({ message: '未知错误' });
+    return Promise.reject({ message: 'Неизвестная ошибка' });
   }
 
-  // 检查网络错误（无响应）
+  // Проверка сетевой ошибки (нет ответа)
   if (err.message === 'Network Error') {
-    return Promise.reject({ message: '服务还在启动，请稍后尝试' });
+    return Promise.reject({ message: 'Сервис ещё запускается, попробуйте позже' });
   }
 
-  // 检查超时错误
+  // Проверка ошибки тайм-аута
   if (err.code === 'ECONNABORTED') {
-    return Promise.reject({ message: '请求超时，请稍后再试' });
+    return Promise.reject({ message: 'Время ожидания запроса истекло, попробуйте позже' });
   }
 
-  // 检查是否有响应体和状态码
+  // Проверка наличия тела ответа и кода статуса
   if (err.response) {
-    // 这里可以根据 err.response.status 进行更详细的错误处理
+    // Здесь можно добавить более детальную обработку ошибок по err.response.status
     return Promise.reject(err.response.data);
   }
 
-  // 对于其他类型的错误，直接返回
+  // Для других типов ошибок — возвращаем напрямую
   return Promise.reject(err);
 }
 
-/* 创建请求实例 */
+/* Создание экземпляра запроса */
 const instance = axios.create({
-  timeout: 60000, // 超时时间
+  timeout: 60000, // время ожидания
   headers: {
     'content-type': 'application/json',
     'Cache-Control': 'no-cache',
   },
 });
 
-/* 请求拦截 */
+/* Перехват запроса */
 instance.interceptors.request.use(requestStart, (err) => Promise.reject(err));
-/* 响应拦截 */
+/* Перехват ответа */
 instance.interceptors.response.use(responseSuccess, (err) =>
   Promise.reject(err),
 );
@@ -93,10 +93,10 @@ export function request(
   config: ConfigType,
   method: Method,
 ): any {
-  /* 去空 */
+  /* Удаление пустых значений */
   Object.keys(data).forEach((key) => {
     if (data[key] === null || data[key] === undefined) {
-      delete data[key]; // 如果属性值为 null 或 undefined，则删除该属性
+      delete data[key]; // Если значение свойства null или undefined, удаляем его
     }
   });
 
@@ -114,7 +114,7 @@ export function request(
 }
 
 /**
- * api请求方式
+ * Методы API-запросов
  * @param {String} url
  * @param {Any} params
  * @param {Object} config

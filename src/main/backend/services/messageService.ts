@@ -60,7 +60,7 @@ export class MessageService {
   }
 
   /**
-   * 获取默认回复
+   * Получение ответа по умолчанию
    * @param cfg
    * @param ctx
    * @param messages
@@ -69,7 +69,7 @@ export class MessageService {
   public async getDefaultReply(cfg: Config): Promise<ReplyDTO> {
     let reply = {
       type: 'TEXT' as MessageType,
-      content: cfg.default_reply || '当前消息有点多，我稍后再回复你',
+      content: cfg.default_reply || 'Сейчас много сообщений, я отвечу вам позже',
     };
 
     const replyContent = await this.choseRandomReply(reply.content);
@@ -82,7 +82,7 @@ export class MessageService {
   }
 
   /**
-   * 获取回复
+   * Получение ответа
    * @param cfg
    * @param ctx
    * @param messages
@@ -93,7 +93,7 @@ export class MessageService {
     ctx: Context,
     messages: MessageDTO[],
   ): Promise<ReplyDTO> {
-    // 先检查是否存在用户的消息
+    // Сначала проверяем наличие сообщения от пользователя
     const lastUserMsg = messages
       .slice()
       .reverse()
@@ -104,25 +104,25 @@ export class MessageService {
 
     if (lastUserMsg) {
       if (cfg.has_transfer) {
-        // 检查是否需要转接
+        // Проверяем необходимость перевода на оператора
         const isTransfer = await this.matchTransferKeyword(ctx, lastUserMsg);
         if (isTransfer) {
-          this.log.info('需要转接');
+          this.log.info('Требуется перевод на оператора');
           hasDefaultReply = false;
           return {
             type: 'TRANSFER' as MessageType,
-            content: '无',
+            content: 'нет',
           };
         }
       }
 
-      // 再根据 context_count 去保留最后几条消息
+      // Оставляем последние сообщения по значению context_count
       if (cfg.context_count > 0) {
         // eslint-disable-next-line no-param-reassign
         messages = messages.slice(-cfg.context_count);
       }
 
-      // 等待随机时间
+      // Ожидание случайное время
       await new Promise((resolve) => {
         const min = cfg.reply_speed;
         const max = cfg.reply_random_speed + cfg.reply_speed;
@@ -130,37 +130,37 @@ export class MessageService {
         setTimeout(resolve, randomTime * 1000);
       });
 
-      // 再检查是否使用关键词匹配
+      // Проверяем совпадение по ключевым словам
       if (cfg.has_keyword_match) {
         const data = await this.matchKeyword(ctx, lastUserMsg);
         if (data && data.content) {
-          this.log.success(`匹配关键词: ${data.content}`);
+          this.log.success(`Совпадение по ключевому слову: ${data.content}`);
           reply = data;
           hasDefaultReply = false;
         } else {
-          this.log.warn(`未匹配到关键词`);
+          this.log.warn(`Ключевое слово не найдено`);
         }
       }
 
-      // 最后检查是否使用 GPT 生成回复
+      // Проверяем, нужно ли генерировать ответ через GPT
       if (cfg.has_use_gpt && hasDefaultReply) {
-        this.log.info(`开始使用 GPT 生成回复`);
+        this.log.info(`Начинаем генерацию ответа через GPT`);
 
         const data = await this.getLLMResponse(cfg, ctx, messages);
 
         if (data && data.content) {
-          this.log.success(`GPT 生成回复: ${data.content}`);
+          this.log.success(`GPT сгенерировал ответ: ${data.content}`);
           reply = data;
           hasDefaultReply = false;
         } else {
-          this.log.warn(`AI 回复生成失败`);
+          this.log.warn(`Не удалось сгенерировать ответ ИИ`);
         }
       }
     }
 
     if (hasDefaultReply) {
       reply = await this.getDefaultReply(cfg);
-      this.log.warn(`未匹配到用户消息，所以使用默认回复: ${reply.content}`);
+      this.log.warn(`Сообщение пользователя не найдено, используется ответ по умолчанию: ${reply.content}`);
     }
 
     if (cfg.has_replace) {
@@ -180,7 +180,7 @@ export class MessageService {
   }
 
   /**
-   * 匹配需要替换的关键词
+   * Совпадение для замены ключевых слов
    * @param ctx
    * @param message
    * @returns
@@ -225,7 +225,7 @@ export class MessageService {
   }
 
   /**
-   * 匹配关键词
+   * Совпадение ключевых слов
    * @param ctx
    * @param message
    * @returns
@@ -259,7 +259,7 @@ export class MessageService {
   }
 
   /**
-   * 匹配关键词
+   * Совпадение ключевых слов
    * @param ctx
    * @param message
    * @returns
@@ -319,12 +319,12 @@ export class MessageService {
   }
 
   /**
-   * 检查 LLM 是否可用
+   * Проверка доступности LLM
    */
   public async checkGptHealth(cfg: LLMConfig) {
     try {
       const llmClient = this.createLLMClient(cfg, cfg.llmType);
-      // 尝试使用它回复 Hi 来检查是否可用
+      // Попытка отправить Hi для проверки доступности
       if ('chat' in llmClient) {
         // @ts-ignore
         const response = await llmClient.chat.completions.create({
@@ -359,12 +359,12 @@ export class MessageService {
 
     return {
       status: false,
-      message: '该模型的 LLM 不可用',
+      message: 'LLM данной модели недоступен',
     };
   }
 
   /**
-   * 获取 GPT 回复
+   * Получение ответа GPT
    * @param cfg
    * @param ctx
    * @param messages
@@ -395,7 +395,7 @@ export class MessageService {
     // const chatCompletion = await client.chat.completions.create
     if ('chat' in llmClient) {
       try {
-        console.log('开始使用 GPT 生成回复....');
+        console.log('Начинаем генерацию ответа через GPT...');
         console.log('messages:', messages);
 
         // @ts-ignore
@@ -424,7 +424,7 @@ export class MessageService {
   }
 
   /**
-   * 创建 LLM 客户端
+   * Создание клиента LLM
    * @param cfg
    * @param llmName
    * @returns
@@ -477,7 +477,7 @@ export class MessageService {
   }
 
   toLLMMessages(ctx: Context, messages: MessageDTO[]) {
-    // 先过滤 system 消息
+    // Сначала фильтруем системные сообщения
     const f_messages = messages.filter((msg) => msg.role !== 'SYSTEM');
     const msgs = f_messages.map((msg) => ({
       role: msg.role === 'SELF' ? 'assistant' : 'user',
@@ -488,7 +488,7 @@ export class MessageService {
   }
 
   /**
-   * 提取消息中的信息
+   * Извлечение информации из сообщений
    * @param cfg
    * @param ctx
    * @param messages
@@ -502,12 +502,12 @@ export class MessageService {
     if (!cfg.extract_phone && !cfg.extract_product) return;
     if (cfg.save_path === '') return;
 
-    console.log('开始提取用户消息中的数据....');
+    console.log('Начинаем извлечение данных из сообщений пользователя...');
 
     const dataExtracted: { [key: string]: string } = {};
     const fileName = `${cfg.save_path}/${new Date().toISOString().split('T')[0]}.txt`;
 
-    // 检查 save_path 是否存在
+    // Проверка существования save_path
     try {
       await fs.access(cfg.save_path);
     } catch (error) {
@@ -525,31 +525,31 @@ export class MessageService {
     }
 
     if (cfg.extract_product) {
-      // 从 ctx 中获取商品信息
+      // Получение информации о товаре из ctx
       const goods = ctx.get(CTX_CURRENT_GOODS);
       if (goods) {
         dataExtracted.goods = goods;
       }
 
-      // 从 ctx 中获取商品 ID
+      // Получение ID товара из ctx
       const goodsId = ctx.get(CTX_CURRENT_GOODS_ID);
       if (goodsId) {
         dataExtracted.goods_id = goodsId;
       }
 
-      // 从 ctx 中获取会员标签
+      // Получение тега участника из ctx
       const memberTag = ctx.get(CTX_MEMBER_TAG);
       if (memberTag) {
         dataExtracted.member_tag = memberTag;
       }
 
-      // 从 ctx 中获取粉丝标签
+      // Получение тега подписчика из ctx
       const fanTag = ctx.get(CTX_FAN_TAG);
       if (fanTag) {
         dataExtracted.fan_tag = fanTag;
       }
 
-      // 从 ctx 中获取新客标签
+      // Получение тега нового клиента из ctx
       const newCustomerTag = ctx.get(CTX_NEW_CUSTOMER_TAG);
       if (newCustomerTag) {
         dataExtracted.new_customer_tag = newCustomerTag;

@@ -39,7 +39,7 @@ const AboutPage: React.FC = () => {
       setIsUpdateModalOpen(true);
     } else {
       toast({
-        title: '已经是最新版本',
+        title: 'Установлена последняя версия',
         position: 'top',
         status: 'success',
         duration: 1000,
@@ -48,9 +48,9 @@ const AboutPage: React.FC = () => {
     }
   };
 
-  // 确认更新则跳转到最新版本的下载链接
+  // При подтверждении обновления переход по ссылке загрузки последней версии
   const confirmUpdate = () => {
-    const latestVersion = updates[0]; // 假设第一个总是最新版本
+    const latestVersion = updates[0]; // Предполагается, что первый элемент всегда последняя версия
     if (latestVersion) {
       window.electron.ipcRenderer.sendMessage('open-url', latestVersion.url);
     }
@@ -65,21 +65,21 @@ const AboutPage: React.FC = () => {
       <VStack>
         <Markdown
           content={`
-本项目是基于大模型的智能对话客服工具，支持哔哩哔哩、抖音企业号、抖音、抖店、微博聊天、小红书专业号运营、小红书、知乎等平台接入，可选择 GPT3.5/GPT4.0，能处理文本、语音和图片，通过插件访问操作系统和互联网等外部资源，支持基于自有知识库定制企业 AI 应用。
+Этот проект — инструмент умной клиентской поддержки на основе больших языковых моделей. Поддерживается подключение к платформам Bilibili, Douyin Enterprise, Douyin, Doudian, Weibo Chat, Xiaohongshu Professional, Xiaohongshu, Zhihu и другим. Можно выбрать GPT3.5/GPT4.0. Обрабатывает текст, голос и изображения. Через плагины получает доступ к ОС и интернету. Поддерживает создание корпоративных ИИ-приложений на основе собственной базы знаний.
 
-## 使用说明
-项目文档: [懒人百宝箱使用说明](https://doc.lazaytools.top/)
+## Инструкция по использованию
+Документация проекта: [Инструкция по использованию Ленивого клиентского сервиса](https://doc.lazaytools.top/)
 
-## 演示视频
-[哔哩哔哩](https://www.bilibili.com/video/BV1qz421Q73S)
+## Демонстрационное видео
+[Bilibili](https://www.bilibili.com/video/BV1qz421Q73S)
 
-## 项目地址
+## Адрес проекта
 
 * [GitHub](https://github.com/lrhh123/ChatGPT-On-CS)
-* [Gitee](https://gitee.com/alsritter/ChatGPT-On-CS) (国内用户推荐)
+* [Gitee](https://gitee.com/alsritter/ChatGPT-On-CS) (рекомендуется для пользователей из Китая)
 
-## 联系方式
-扫码添加微信小助手，备注 “懒人客服” 即可。
+## Контактная информация
+Отсканируйте QR-код для добавления помощника WeChat, укажите «Ленивый клиентский сервис».
 
 ![](https://image.quicktoolset.top/img202406172039969.png)
       `}
@@ -90,12 +90,12 @@ const AboutPage: React.FC = () => {
 
       <Box p={5}>
         <Stack spacing={3}>
-          <Text fontWeight="bold">版本信息</Text>
-          <Text>懒人客服 {currentVersion}</Text>
+          <Text fontWeight="bold">Информация о версии</Text>
+          <Text>Ленивый клиентский сервис {currentVersion}</Text>
 
-          {/* 检查更新 */}
+          {/* Проверить обновления */}
           <Button size="sm" onClick={checkUpdate}>
-            检查更新
+            Проверить обновления
           </Button>
         </Stack>
       </Box>
@@ -106,10 +106,10 @@ const AboutPage: React.FC = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>版本更新</ModalHeader>
+          <ModalHeader>Обновление версии</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>当前版本是 {currentVersion}. 检查到以下更新：</Text>
+            <Text>Текущая версия {currentVersion}. Обнаружены следующие обновления:</Text>
             <VStack spacing={4} mt="20px">
               {updates.map((update, index) => (
                 <Box key={index}>
@@ -120,10 +120,10 @@ const AboutPage: React.FC = () => {
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={confirmUpdate}>
-              立即更新到最新版本
+              Обновить до последней версии
             </Button>
             <Button variant="ghost" onClick={() => setIsUpdateModalOpen(false)}>
-              关闭
+              Закрыть
             </Button>
           </ModalFooter>
         </ModalContent>

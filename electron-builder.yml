@@ -1,5 +1,5 @@
 appId: org.lrhh123.cocs
-productName: 懒人客服
+productName: Ленивый клиентский сервис
 asar: true
 asarUnpack: "**\\*.{node,dll}"
 compression: maximum
@@ -19,7 +19,7 @@ nsis:
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true
   createStartMenuShortcut: true
-  shortcutName: 懒人客服
+  shortcutName: Ленивый клиентский сервис
   uninstallDisplayName: ChatGPT-On-CS
   deleteAppDataOnUninstall: true
   artifactName: "${productName} ${version}.${ext}"

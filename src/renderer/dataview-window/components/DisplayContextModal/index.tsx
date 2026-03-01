@@ -67,20 +67,20 @@ const DisplayContextModal: React.FC<DisplayContextModalProps> = ({
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>详情</ModalHeader>
+          <ModalHeader>Подробности</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             {data ? (
               renderContent(parsedData, data)
             ) : (
               <Text>
-                <strong>No data</strong>
+                <strong>Нет данных</strong>
               </Text>
             )}
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
+              Закрыть
             </Button>
           </ModalFooter>
         </ModalContent>

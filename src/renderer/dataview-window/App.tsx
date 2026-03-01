@@ -47,7 +47,7 @@ const App = () => {
                 _hover={{ bg: 'gray.300' }}
                 textAlign="left"
               >
-                编辑关键词
+                Редактирование ключевых слов
               </Tab>
 
               <Tab
@@ -55,46 +55,46 @@ const App = () => {
                 _hover={{ bg: 'gray.300' }}
                 textAlign="left"
               >
-                替换关键词
+                Замена ключевых слов
               </Tab>
               <Tab
                 _selected={{ bg: 'gray.200' }}
                 _hover={{ bg: 'gray.300' }}
                 textAlign="left"
               >
-                转人工关键词
+                Ключевые слова для перевода на оператора
               </Tab>
               <Tab
                 _selected={{ bg: 'gray.200' }}
                 _hover={{ bg: 'gray.300' }}
                 textAlign="left"
               >
-                历史聊天记录
+                История чатов
               </Tab>
             </TabList>
             <TabPanels flex="1" overflowY="auto" p={4}>
               <TabPanel>
                 <Heading as="h3" size="md" mb={4}>
-                  关键词匹配
+                  Совпадение ключевых слов
                 </Heading>
                 <ReplyKeyword />
               </TabPanel>
 
               <TabPanel>
                 <Heading as="h3" size="md" mb={4}>
-                  替换关键词
+                  Замена ключевых слов
                 </Heading>
                 <ReplaceKeyword />
               </TabPanel>
               <TabPanel>
                 <Heading as="h3" size="md" mb={4}>
-                  转人工关键词
+                  Ключевые слова для перевода на оператора
                 </Heading>
                 <TransferKeyword />
               </TabPanel>
               <TabPanel>
                 <Heading as="h3" size="md" mb={4}>
-                  历史聊天记录
+                  История чатов
                 </Heading>
                 <SessionHistory />
               </TabPanel>

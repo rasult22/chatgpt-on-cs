@@ -28,7 +28,7 @@ const stopBackendServiceManager = async () => {
   }
 };
 
-// 修复 GPU process isn't usable. Goodbye. 错误
+// Исправление ошибки GPU process isn't usable. Goodbye.
 // https://learn.microsoft.com/en-us/answers/questions/1193062/how-to-fix-electron-program-gpu-process-isnt-usabl
 app.commandLine.appendSwitch('no-sandbox');
 app.commandLine.appendSwitch('lang', 'zh-CN');
@@ -66,7 +66,7 @@ if (isDebug) {
   require('electron-debug')();
 }
 
-// 安装开发者工具，如果网络不好，可以注释掉
+// Установка инструментов разработчика; при плохой сети можно закомментировать
 // const installExtensions = async () => {
 //   const installer = require('electron-devtools-installer');
 //   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
@@ -106,7 +106,7 @@ const createWindow = async () => {
     show: false,
     width: 528,
     height: 1024,
-    resizable: false, // 防止用户调整窗口大小
+    resizable: false, // Запрет изменения размера окна пользователем
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged
@@ -116,7 +116,7 @@ const createWindow = async () => {
   });
 
   if (!gotTheLock) {
-    // 如果获取不到锁，说明已有一个实例在运行，直接退出
+    // Если блокировка не получена — экземпляр уже запущен, выходим
     app.quit();
     return;
   }
@@ -125,7 +125,7 @@ const createWindow = async () => {
   setupCron(mainWindow, backendServiceManager);
 
   const server = new Server(backendServiceManager.getPort(), mainWindow);
-  // 启动服务器
+  // Запуск сервера
   server
     .start()
     .then(() => {
@@ -150,16 +150,16 @@ const createWindow = async () => {
 
   mainWindow.on('closed', () => {
     mainWindow = null;
-    // 确保所有窗口关闭后退出应用
+    // Выход из приложения после закрытия всех окон
     if (BrowserWindow.getAllWindows().length === 0) {
       app.quit();
     }
   });
 
   mainWindow.on('close', async () => {
-    // 停止后台服务
+    // Остановка фоновой службы
     await stopBackendServiceManager();
-    // 关闭所有窗口
+    // Закрытие всех окон
     BrowserWindow.getAllWindows().forEach((win) => {
       if (win !== mainWindow) {
         win.close();

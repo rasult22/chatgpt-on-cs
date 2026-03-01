@@ -74,7 +74,7 @@ const ReplaceKeyword = () => {
 
   const handleInsertFile = () => {
     window.electron.ipcRenderer.sendMessage('select-file', {
-      filters: [{ name: 'Excel 模板', extensions: ['xls', 'xlsx'] }],
+      filters: [{ name: 'Шаблон Excel', extensions: ['xls', 'xlsx'] }],
     });
     window.electron.ipcRenderer.once('selected-file', async (path) => {
       const selectedPath = path as string[];
@@ -84,8 +84,8 @@ const ReplaceKeyword = () => {
         await updateReplaceExcel({ path: selectedPath[0] });
         refetch();
         toast({
-          title: '导入成功',
-          description: '导入成功',
+          title: 'Импорт успешен',
+          description: 'Импорт успешен',
           position: 'top',
           status: 'success',
           duration: 3000,
@@ -100,7 +100,7 @@ const ReplaceKeyword = () => {
               ? e
               : JSON.stringify(e);
         toast({
-          title: '导入失败',
+          title: 'Ошибка импорта',
           description: message,
           position: 'top',
           status: 'error',
@@ -118,8 +118,8 @@ const ReplaceKeyword = () => {
       setUpdated(true);
       await exportReplaceExcel();
       toast({
-        title: '导出成功',
-        description: '导出成功',
+        title: 'Экспорт успешен',
+        description: 'Экспорт успешен',
         position: 'top',
         status: 'success',
         duration: 3000,
@@ -134,7 +134,7 @@ const ReplaceKeyword = () => {
             ? e
             : JSON.stringify(e);
       toast({
-        title: '导出失败',
+        title: 'Ошибка экспорта',
         description: message,
         position: 'top',
         status: 'error',
@@ -176,9 +176,8 @@ const ReplaceKeyword = () => {
   return (
     <Box>
       <Box display="flex" justifyContent="space-between" mb={2}>
-        <Alert status="info" mr={'20px'}>
-          例如：关键词是“你好”，替换内容是 “您好”，当回复为 “你好，我是 ChatGPT”
-          时，将替换为“您好，我是 ChatGPT”。
+        <Alert status=”info” mr={'20px'}>
+          Например: ключевое слово — «привет», замена — «здравствуйте». Когда ответ содержит «привет, я ChatGPT», он будет заменён на «здравствуйте, я ChatGPT».
         </Alert>
         <Flex alignItems="center">
           <HStack>
@@ -194,9 +193,9 @@ const ReplaceKeyword = () => {
               onClick={handleAddKeyword}
               isLoading={updated}
             >
-              新增关键词
+              Добавить ключевое слово
             </Button>
-            <Tooltip label="导入并覆盖关键词">
+            <Tooltip label="Импортировать и перезаписать ключевые слова">
               <Button
                 size="sm"
                 variant="solid"
@@ -204,17 +203,17 @@ const ReplaceKeyword = () => {
                 onClick={handleInsertFile}
                 isLoading={updated}
               >
-                覆盖导入
+                Импорт с перезаписью
               </Button>
             </Tooltip>
-            <Tooltip label="导出关键词（下载模板）">
+            <Tooltip label="Экспорт ключевых слов (скачать шаблон)">
               <Button
                 size="sm"
                 variant="solid"
                 onClick={handleExportReplyExcel}
                 isLoading={updated}
               >
-                导出
+                Экспорт
               </Button>
             </Tooltip>
           </HStack>
@@ -224,12 +223,12 @@ const ReplaceKeyword = () => {
         <Table variant="striped" size="sm" className="table-tiny">
           <Thead>
             <Tr>
-              <Th>平台</Th>
-              <Th>关键词</Th>
-              <Th>替换内容</Th>
-              <Th>模糊匹配</Th>
-              <Th>正则</Th>
-              <Th>操作</Th>
+              <Th>Платформа</Th>
+              <Th>Ключевое слово</Th>
+              <Th>Содержимое для замены</Th>
+              <Th>Нечёткое совпадение</Th>
+              <Th>Регулярное выражение</Th>
+              <Th>Действия</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -256,11 +255,11 @@ const ReplaceKeyword = () => {
                 >
                   {keyword.replace}
                 </Td>
-                <Td>{keyword.fuzzy ? '是' : '否'}</Td>
-                <Td>{keyword.has_regular ? '是' : '否'}</Td>
+                <Td>{keyword.fuzzy ? 'Да' : 'Нет'}</Td>
+                <Td>{keyword.has_regular ? 'Да' : 'Нет'}</Td>
                 <Td>
                   <Grid templateColumns="repeat(2, 1fr)" gap={2}>
-                    <Tooltip label="删除">
+                    <Tooltip label="Удалить">
                       <IconButton
                         size="xs"
                         fontSize="13px"
@@ -271,7 +270,7 @@ const ReplaceKeyword = () => {
                       />
                     </Tooltip>
 
-                    <Tooltip label="编辑">
+                    <Tooltip label="Редактировать">
                       <IconButton
                         size="xs"
                         fontSize="13px"

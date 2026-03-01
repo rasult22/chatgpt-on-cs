@@ -106,15 +106,15 @@ const SessionHistory = () => {
       setUpdated(true);
       await exportMessageExcel();
       toast({
-        title: '导出成功',
-        description: '导出成功',
+        title: 'Экспорт успешен',
+        description: 'Экспорт успешен',
         position: 'top',
         status: 'success',
         duration: 3000,
         isClosable: true,
       });
     } catch (e) {
-      let message = '导出失败';
+      let message = 'Ошибка экспорта';
       if (e instanceof Error) {
         message = e.message;
       } else if (typeof e === 'string') {
@@ -124,7 +124,7 @@ const SessionHistory = () => {
       }
 
       toast({
-        title: '导出失败',
+        title: 'Ошибка экспорта',
         description: message,
         position: 'top',
         status: 'error',
@@ -139,8 +139,8 @@ const SessionHistory = () => {
   const columns = useMemo(
     () => [
       { Header: 'ID', accessor: 'id' },
-      { Header: '应用名称', accessor: 'platform' },
-      { Header: '记录时间', accessor: 'created_at' },
+      { Header: 'Название приложения', accessor: 'platform' },
+      { Header: 'Время записи', accessor: 'created_at' },
     ],
     [],
   );
@@ -177,13 +177,13 @@ const SessionHistory = () => {
         <Flex mb={4} alignItems="center">
           <InputGroup mr={4}>
             <Input
-              placeholder="搜索关键词"
+              placeholder="Поиск по ключевому слову"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </InputGroup>
           <Select
-            placeholder="全部平台"
+            placeholder="Все платформы"
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
             mr={4}
@@ -194,7 +194,7 @@ const SessionHistory = () => {
               </option>
             ))}
           </Select>
-          <Tooltip label="导出全部消息">
+          <Tooltip label="Экспортировать все сообщения">
             <IconButton
               icon={<DownloadIcon />}
               variant="solid"
@@ -221,7 +221,7 @@ const SessionHistory = () => {
                     </Th>
                   ))}
 
-                  <Th>操作</Th>
+                  <Th>Действия</Th>
                 </Tr>
               ))}
             </Thead>
@@ -252,25 +252,25 @@ const SessionHistory = () => {
                         size={'sm'}
                         variant="link"
                         mr={2}
-                        aria-label="查看消息"
+                        aria-label="Просмотреть сообщения"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleSessionClick(row.original);
                         }}
                       >
-                        查看消息
+                        Просмотреть сообщения
                       </Button>
                       <Button
                         size={'sm'}
                         variant="link"
-                        aria-label="查看上下文"
+                        aria-label="Просмотреть контекст"
                         onClick={(e) => {
                           e.stopPropagation();
                           setSelectedSession(row.original);
                           onDisplayContextOpen();
                         }}
                       >
-                        查看上下文
+                        Просмотреть контекст
                       </Button>
                     </Td>
                   </Tr>
@@ -286,8 +286,8 @@ const SessionHistory = () => {
           className="pagination-container"
         >
           <ReactPaginate
-            previousLabel={'< 上页'}
-            nextLabel={'下页 >'}
+            previousLabel={'< Назад'}
+            nextLabel={'Далее >'}
             breakLabel={'...'}
             pageCount={pageCount}
             marginPagesDisplayed={1}

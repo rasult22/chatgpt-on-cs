@@ -1,22 +1,22 @@
 export const PluginExtraLib = `
       type AppContext = {
-        CTX_APP_NAME: string; // 当前应用名称
-        CTX_APP_ID: string; // 当前应用 ID
-        CTX_INSTANCE_ID: string; // 当前客服实例 ID
-        CTX_USERNAME?: string; // 当前操作的用户名
-        CTX_PLATFORM?: string; // 当前所在平台
-        CTX_HAS_NEW_MESSAGE?: boolean; // 是否有新消息
-        CTX_HAS_GROUP_MESSAGE?: boolean; // 是否有群消息
-        CTX_CURRENT_GOODS?: string; // 当前商品
-        CTX_CURRENT_GOODS_ID?: string; // 当前商品 ID
-        CTX_MEMBER_TAG?: string; // 会员标签
-        CTX_FAN_TAG?: string; // 粉丝标签
-        CTX_NEW_CUSTOMER_TAG?: string; // 新客标签
-        CTX_ORDER_STATUS?: string; // 订单状态
-        CTX_ORDER_ID?: string; // 订单 ID
-        CTX_ORDER_AMOUNT?: string; // PDD 平台特有 [订单金额]
-        CTX_GOODS_SPEC?: string; // PDD 平台特有 [商品规格]
-        CTX_LOGISTICS_STATUS?: string; // 物流状态
+        CTX_APP_NAME: string; // Название текущего приложения
+        CTX_APP_ID: string; // ID текущего приложения
+        CTX_INSTANCE_ID: string; // ID текущего экземпляра оператора
+        CTX_USERNAME?: string; // Имя текущего пользователя
+        CTX_PLATFORM?: string; // Текущая платформа
+        CTX_HAS_NEW_MESSAGE?: boolean; // Есть ли новые сообщения
+        CTX_HAS_GROUP_MESSAGE?: boolean; // Есть ли групповые сообщения
+        CTX_CURRENT_GOODS?: string; // Текущий товар
+        CTX_CURRENT_GOODS_ID?: string; // ID текущего товара
+        CTX_MEMBER_TAG?: string; // Тег участника
+        CTX_FAN_TAG?: string; // Тег подписчика
+        CTX_NEW_CUSTOMER_TAG?: string; // Тег нового клиента
+        CTX_ORDER_STATUS?: string; // Статус заказа
+        CTX_ORDER_ID?: string; // ID заказа
+        CTX_ORDER_AMOUNT?: string; // Специфично для PDD [сумма заказа]
+        CTX_GOODS_SPEC?: string; // Специфично для PDD [характеристики товара]
+        CTX_LOGISTICS_STATUS?: string; // Статус доставки
       };
 
       type RoleType = 'SELF' | 'OTHER' | 'SYSTEM';
@@ -24,15 +24,15 @@ export const PluginExtraLib = `
       type MessageType = 'TEXT' | 'IMAGE' | 'VIDEO' | 'FILE' | 'NO_REPLY';
 
       type Message = {
-        sender: string; // 发送者
-        content: string; // 消息内容
-        role: RoleType; // 发送者角色
-        type: MessageType; // 消息类型
+        sender: string; // Отправитель
+        content: string; // Содержимое сообщения
+        role: RoleType; // Роль отправителя
+        type: MessageType; // Тип сообщения
       };
 
       type Reply = {
-        content: string; // 回复内容
-        type: MessageType; // 回复类型
+        content: string; // Содержимое ответа
+        type: MessageType; // Тип ответа
       };
       `;
 
@@ -40,10 +40,10 @@ export const PluginExampleCode = `const cc = require('config_srv');
 const rp = require('reply_srv');
 
 /**
- * 插件主函数
- * @param {AppContext} ctx - 上下文信息
- * @param {Message[]} messages - 消息数组
- * @returns {Reply} 插件执行结果
+ * Главная функция плагина
+ * @param {AppContext} ctx - Информация о контексте
+ * @param {Message[]} messages - Массив сообщений
+ * @returns {Reply} Результат выполнения плагина
  */
 async function main(ctx, messages) {
   const cfg = await cc.get(ctx);
@@ -57,7 +57,7 @@ export const LLMTypeList = [
   },
   {
     key: 'ernie',
-    name: '文心大模型',
+    name: 'Модель Wenxin (Baidu)',
   },
   {
     key: 'gemini',
@@ -65,7 +65,7 @@ export const LLMTypeList = [
   },
   {
     key: 'hunyuan',
-    name: '腾讯混元',
+    name: 'Tencent Hunyuan',
   },
   {
     key: 'minimax',
@@ -73,7 +73,7 @@ export const LLMTypeList = [
   },
   {
     key: 'qwen',
-    name: '通义千问',
+    name: 'Tongyi Qianwen (Alibaba)',
   },
   {
     key: 'spark',
@@ -172,28 +172,28 @@ export const ModelList = [
   },
 ];
 
-// 固定会传递的上下文参数
+// Фиксированные параметры контекста
 export const CTX_APP_NAME = 'CTX_APP_NAME';
 export const CTX_APP_ID = 'CTX_APP_ID';
 export const CTX_INSTANCE_ID = 'CTX_INSTANCE_ID';
 
-export const CTX_USERNAME = 'CTX_USERNAME'; // 当前操作的用户名
-export const CTX_PLATFORM = 'CTX_PLATFORM'; // 当前所在平台
-export const CTX_HAS_NEW_MESSAGE = 'CTX_HAS_NEW_MESSAGE'; // 是否有新消息
-export const CTX_HAS_GROUP_MESSAGE = 'CTX_HAS_GROUP_MESSAGE'; // 是否有群消息
+export const CTX_USERNAME = 'CTX_USERNAME'; // Имя текущего пользователя
+export const CTX_PLATFORM = 'CTX_PLATFORM'; // Текущая платформа
+export const CTX_HAS_NEW_MESSAGE = 'CTX_HAS_NEW_MESSAGE'; // Есть ли новые сообщения
+export const CTX_HAS_GROUP_MESSAGE = 'CTX_HAS_GROUP_MESSAGE'; // Есть ли групповые сообщения
 
-// 电商平台
-export const CTX_CURRENT_GOODS = 'CTX_CURRENT_GOODS'; // 当前商品
-export const CTX_CURRENT_GOODS_ID = 'CTX_CURRENT_GOODS_ID'; // 当前商品 ID
-export const CTX_MEMBER_TAG = 'CTX_MEMBER_TAG'; // 会员标签
-export const CTX_FAN_TAG = 'CTX_FAN_TAG'; // 粉丝标签
-export const CTX_NEW_CUSTOMER_TAG = 'CTX_NEW_CUSTOMER_TAG'; // 新客标签
+// Платформа электронной коммерции
+export const CTX_CURRENT_GOODS = 'CTX_CURRENT_GOODS'; // Текущий товар
+export const CTX_CURRENT_GOODS_ID = 'CTX_CURRENT_GOODS_ID'; // ID текущего товара
+export const CTX_MEMBER_TAG = 'CTX_MEMBER_TAG'; // Тег участника
+export const CTX_FAN_TAG = 'CTX_FAN_TAG'; // Тег подписчика
+export const CTX_NEW_CUSTOMER_TAG = 'CTX_NEW_CUSTOMER_TAG'; // Тег нового клиента
 
-export const CTX_ORDER_STATUS = 'CTX_ORDER_STATUS'; // 订单状态
-export const CTX_ORDER_ID = 'CTX_ORDER_ID'; // 订单 ID
-export const CTX_ORDER_AMOUNT = 'CTX_ORDER_AMOUNT'; // PDD 平台特有 [订单金额]
-export const CTX_GOODS_SPEC = 'CTX_GOODS_SPEC'; // PDD 平台特有 [商品规格]
-export const CTX_LOGISTICS_STATUS = 'CTX_LOGISTICS_STATUS'; // 物流状态
+export const CTX_ORDER_STATUS = 'CTX_ORDER_STATUS'; // Статус заказа
+export const CTX_ORDER_ID = 'CTX_ORDER_ID'; // ID заказа
+export const CTX_ORDER_AMOUNT = 'CTX_ORDER_AMOUNT'; // Специфично для PDD [сумма заказа]
+export const CTX_GOODS_SPEC = 'CTX_GOODS_SPEC'; // Специфично для PDD [характеристики товара]
+export const CTX_LOGISTICS_STATUS = 'CTX_LOGISTICS_STATUS'; // Статус доставки
 
 export const ContextKeys = [
   CTX_APP_NAME,
@@ -223,20 +223,20 @@ export const MockCtx = new Map<string, string>([
 
 export const MockMessages = [
   {
-    sender: 'SELF用户',
-    content: '这是一条测试消息',
+    sender: 'Пользователь SELF',
+    content: 'Это тестовое сообщение',
     role: 'SELF',
     type: 'TEXT',
   },
   {
-    sender: 'SYSTEM通知',
-    content: '这是一条系统消息',
+    sender: 'Уведомление SYSTEM',
+    content: 'Это системное сообщение',
     role: 'SYSTEM',
     type: 'TEXT',
   },
   {
-    sender: 'OTHER用户',
-    content: '这是一条测试消息',
+    sender: 'Пользователь OTHER',
+    content: 'Это тестовое сообщение',
     role: 'OTHER',
     type: 'TEXT',
   },

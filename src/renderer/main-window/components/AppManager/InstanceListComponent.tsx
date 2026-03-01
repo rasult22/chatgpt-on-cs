@@ -41,8 +41,8 @@ const InstanceListComponent = () => {
       await handleAddTask();
     } catch (error) {
       toast({
-        title: '添加失败',
-        description: (error as Error).message || '未知错误',
+        title: 'Не удалось добавить',
+        description: (error as Error).message || 'Неизвестная ошибка',
         position: 'top',
         status: 'error',
         duration: 5000,
@@ -57,7 +57,7 @@ const InstanceListComponent = () => {
     return (
       <Flex justifyContent="center" alignItems="center" w="60%" h="100%">
         <Text fontSize="xl" color="gray.500">
-          请先选择一个应用
+          Сначала выберите приложение
         </Text>
       </Flex>
     );
@@ -77,7 +77,7 @@ const InstanceListComponent = () => {
   } else {
     content = (
       <Text fontSize="xl" color="gray.500">
-        没有启动该应用的客服
+        Нет запущенных операторов для этого приложения
       </Text>
     );
   }
@@ -91,7 +91,7 @@ const InstanceListComponent = () => {
             <Spinner size="md" />
           </Flex>
         ) : (
-          <Tooltip label={`新增一个客服账户`}>
+          <Tooltip label={`Добавить учётную запись оператора`}>
             <Flex
               w="100%"
               h="50px"

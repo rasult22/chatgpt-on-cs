@@ -4,14 +4,14 @@ export const isVersionGreater = (
   onlineVersion: string,
   currentVersion: string,
 ) => {
-  // 更新正则表达式，更好地分离数字和后缀部分
+  // Обновление регулярного выражения для лучшего разделения чисел и суффиксов
   const versionRegex = /(\d+\.\d+\.\d+)(-?[^.]*)(\.\d+)?/;
   const [, onlineMain, onlinePre, onlinePreNum] =
     onlineVersion.match(versionRegex) || [];
   const [, currentMain, currentPre, currentPreNum] =
     currentVersion.match(versionRegex) || [];
 
-  // 比较主版本号
+  // Сравнение основного номера версии
   const onlineParts = onlineMain.split('.').map(Number);
   const currentParts = currentMain.split('.').map(Number);
 
@@ -26,14 +26,14 @@ export const isVersionGreater = (
     }
   }
 
-  // 如果主版本号相同，先比较后缀是否存在（如果存在数字后缀的话）
+  // Если основные версии совпадают, сравниваем суффиксы
   if (onlinePre || currentPre) {
-    if (!onlinePre && currentPre) return true; // online 没有后缀，current 有后缀，online 更大
-    if (onlinePre && !currentPre) return false; // online 有后缀，current 没有后缀，online 更小
+    if (!onlinePre && currentPre) return true; // online без суффикса, current с суффиксом — online новее
+    if (onlinePre && !currentPre) return false; // online с суффиксом, current без суффикса — online старее
     if (onlinePre !== currentPre) {
-      return onlinePre > currentPre; // 直接字符串比较后缀
+      return onlinePre > currentPre; // Прямое сравнение суффиксов как строк
     }
-    // 如果后缀相同，比较数字后缀
+    // Если суффиксы одинаковы, сравниваем числовые суффиксы
     const onlinePreNumValue = onlinePreNum
       ? parseInt(onlinePreNum.substring(1), 10)
       : 0;
@@ -43,7 +43,7 @@ export const isVersionGreater = (
     return onlinePreNumValue > currentPreNumValue;
   }
 
-  return false; // 如果主版本号和后缀完全相同，返回 false
+  return false; // Если основная версия и суффикс полностью совпадают, возвращаем false
 };
 
 export const getVersionInfo = async (currentVersion: string) => {
@@ -54,7 +54,7 @@ export const getVersionInfo = async (currentVersion: string) => {
     >('https://update.wizgadg.top/check-update/chatgpt-on-cs');
 
     const { data } = response;
-    // 过滤出所有比当前版本新的版本
+    // Фильтрация версий, более новых, чем текущая
     updates = data.filter((versionInfo) =>
       isVersionGreater(versionInfo.version, currentVersion),
     );

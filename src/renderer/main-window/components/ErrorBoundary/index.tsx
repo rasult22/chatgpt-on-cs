@@ -82,20 +82,20 @@ class ErrorBoundary extends React.Component<
           >
             <AlertIcon boxSize="50px" mr={0} />
             <AlertTitle mt={4} mb={1} fontSize="xl">
-              很抱歉，应用遇到了一些问题。
+              Извините, в приложении произошла ошибка.
             </AlertTitle>
             <AlertDescription maxWidth="sm" mb={4}>
-              {error?.toString() || '未知错误，请尝试刷新页面或稍后再试。'}
+              {error?.toString() || 'Неизвестная ошибка. Попробуйте обновить страницу или повторите позже.'}
             </AlertDescription>
             <Button
               colorScheme="red"
               variant="solid"
               onClick={() => window.location.reload()}
             >
-              刷新页面
+              Обновить страницу
             </Button>
             <AlertDescription maxWidth="sm" mt={4}>
-              如果问题仍然存在，请通过以下方式联系我们获取帮助：
+              Если проблема сохраняется, свяжитесь с нами для получения помощи:
             </AlertDescription>
             <Link
               href="mailto:author@example.com"

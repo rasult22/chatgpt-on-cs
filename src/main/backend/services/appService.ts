@@ -30,7 +30,7 @@ export class AppService {
   }
 
   /**
-   * 初始化全部任务
+   * Инициализация всех задач
    */
   public async initTasks(): Promise<void> {
     const instances = await Instance.findAll();
@@ -38,10 +38,10 @@ export class AppService {
   }
 
   /**
-   * 添加一个任务
+   * Добавление задачи
    */
   public async addTask(appId: string): Promise<Instance | null> {
-    // 使用事务
+    // Использование транзакции
     return this.sequelize
       .transaction(async (t: Transaction) => {
         const instance = await Instance.create(
@@ -52,15 +52,15 @@ export class AppService {
           { transaction: t },
         );
 
-        // 取得全部 Tasks 然后全部更新
+        // Получение всех задач и обновление
         const tasks = await Instance.findAll();
         tasks.push(instance);
         const result = await this.dispatchService.updateTasks(tasks);
         if (!result || result.length === 0) {
-          throw new Error('添加任务失败，请重新尝试');
+          throw new Error('Не удалось добавить задачу, попробуйте снова');
         }
 
-        // 遍历 result 检查，判断是否存在 error 属性
+        // Проверка result на наличие ошибок
         const err_target = result.find((task) => task.error);
         if (err_target) {
           throw new Error(err_target.error);
@@ -78,14 +78,14 @@ export class AppService {
         return instance;
       })
       .catch((error) => {
-        // 处理错误
+        // Обработка ошибки
         console.error('Transaction failed:', error);
-        throw error; // 可根据需求自定义错误处理逻辑
+        throw error; // Логику обработки ошибок можно настроить по необходимости
       });
   }
 
   /**
-   * 移除一个任务
+   * Удаление задачи
    */
   public async removeTask(taskId: string): Promise<boolean> {
     const instance = await Instance.findByPk(taskId);
@@ -96,12 +96,12 @@ export class AppService {
 
     await instance.destroy();
 
-    // 找到对应的 Config 删除
+    // Поиск и удаление соответствующей конфигурации
     const config = await Config.findOne({
       where: { instance_id: taskId },
     });
     if (config) {
-      // 检查是否使用插件
+      // Проверка использования плагина
       if (config.plugin_id) {
         const plugin = await Plugin.findOne({
           where: { id: config.plugin_id },
@@ -114,7 +114,7 @@ export class AppService {
       await config.destroy();
     }
 
-    // 取得全部 Tasks 然后全部更新
+    // Получение всех задач и обновление
     const tasks = await Instance.findAll();
     await this.dispatchService.updateTasks(tasks);
 

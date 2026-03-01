@@ -8,12 +8,12 @@ const setupCron = (mainWindow: BrowserWindow, bsm: BackendServiceManager) => {
     return `http://127.0.0.1:${bsm.getPort()}/${url}`;
   };
 
-  // 每隔 5 秒执行一次，通知和渲染进程刷新配置
+  // Выполняется каждые 5 секунд, уведомление процесса рендеринга об обновлении конфигурации
   setCron('*/5 * * * * *', () => {
     mainWindow.webContents.send('refresh-config');
   });
 
-  // 每隔 5 秒执行一次检查后端服务是否健康
+  // Проверка работоспособности бэкенд-сервиса каждые 5 секунд
   setCron('*/5 * * * * *', async () => {
     if (!bsm) {
       console.error('BackendServiceManager not found');
@@ -26,14 +26,14 @@ const setupCron = (mainWindow: BrowserWindow, bsm: BackendServiceManager) => {
     mainWindow.webContents.send('check-health', data);
   });
 
-  // 每隔 5 秒同步一次 Backend 服务的状态
+  // Синхронизация состояния бэкенд-сервиса каждые 5 секунд
   setCron('*/20 * * * * *', async () => {
     if (!bsm) {
       console.error('BackendServiceManager not found');
       return;
     }
 
-    // 为了避免依赖麻烦，这里直接通过 axios 发送请求
+    // Для упрощения зависимостей здесь используется прямой запрос через axios
     try {
       await axios.post(baseURL('api/v1/base/sync'), {});
     } catch (error) {

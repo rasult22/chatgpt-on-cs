@@ -9,7 +9,7 @@ import { getTempPath } from '../../utils';
 
 export class MessageController {
   /**
-   * 保存消息
+   * Сохранение сообщения
    * @param ctx
    * @param reply
    * @param messages
@@ -27,7 +27,7 @@ export class MessageController {
       throw new Error('Invalid context');
     }
 
-    // 先创建 Session
+    // Сначала создаём сессию
     const session = await Session.create({
       platform: appName,
       platform_id: appId,
@@ -36,7 +36,7 @@ export class MessageController {
       context: Array.from(ctx.entries()),
     });
 
-    // 再创建 Message
+    // Затем создаём сообщение
     const msgs = messages.map((msg) => {
       return {
         session_id: session.id,
@@ -61,9 +61,9 @@ export class MessageController {
   }
 
   /**
-   * 查询聊天会话
-   * @param page 当前页
-   * @param pageSize 每页大小
+   * Запрос диалоговых сессий
+   * @param page текущая страница
+   * @param pageSize размер страницы
    * @returns
    */
   public async getSessions({
@@ -77,7 +77,7 @@ export class MessageController {
     keyword?: string;
     platformId?: string;
   }) {
-    // 如果存在关键词，需要去查询 Message 表，然后取得 session_id，再去查询 Session 表
+    // Если есть ключевое слово, нужно запросить таблицу Message, получить session_id и затем запросить таблицу Session
     const kw = keyword?.trim();
 
     if (kw) {
@@ -122,7 +122,7 @@ export class MessageController {
   }
 
   /**
-   * 查询聊天消息
+   * Запрос сообщений чата
    * @param sessionId
    * @returns
    */
@@ -136,7 +136,7 @@ export class MessageController {
   }
 
   /**
-   * 导出消息到 Excel
+   * Экспорт сообщений в Excel
    *
    * @returns
    */
@@ -156,27 +156,27 @@ export class MessageController {
     }));
 
     const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet('全部消息');
+    const worksheet = workbook.addWorksheet('Все сообщения');
 
     worksheet.columns = [
       { header: 'ID', key: 'id', width: 10 },
       { header: 'Session ID', key: 'session_id', width: 10 },
-      { header: '角色', key: 'role', width: 10 },
-      { header: '内容', key: 'content', width: 50 },
-      { header: '发送者', key: 'sender', width: 10 },
-      { header: '类型', key: 'type', width: 10 },
-      { header: '创建时间', key: 'created_at', width: 20 },
+      { header: 'Роль', key: 'role', width: 10 },
+      { header: 'Содержимое', key: 'content', width: 50 },
+      { header: 'Отправитель', key: 'sender', width: 10 },
+      { header: 'Тип', key: 'type', width: 10 },
+      { header: 'Время создания', key: 'created_at', width: 20 },
     ];
 
     worksheet.addRows(data);
 
-    // 检查是否存在 excels 文件夹，不存在则创建
+    // Проверка существования папки excels, если не существует — создаём
     if (!fs.existsSync(`${getTempPath()}/excels`)) {
       fs.mkdirSync(`${getTempPath()}/excels`);
     }
 
-    // 保存文件
-    const filePath = `${getTempPath()}/excels/全部消息-${Date.now()}.xlsx`;
+    // Сохранение файла
+    const filePath = `${getTempPath()}/excels/Все сообщения-${Date.now()}.xlsx`;
     await workbook.xlsx.writeFile(filePath);
     return filePath;
   }

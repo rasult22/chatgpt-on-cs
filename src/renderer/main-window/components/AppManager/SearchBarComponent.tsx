@@ -21,7 +21,7 @@ const SearchBarComponent = ({ onSearch }: SearchBarComponentProps) => {
   return (
     <InputGroup>
       <Input
-        placeholder="搜索"
+        placeholder="Поиск"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />

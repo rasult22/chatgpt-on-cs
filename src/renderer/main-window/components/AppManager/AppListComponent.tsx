@@ -44,7 +44,7 @@ const AppListComponent = () => {
             height="100%"
           >
             <Spinner size="xl" />
-            <Text ml={4}>启动服务中...</Text>
+            <Text ml={4}>Запуск сервиса...</Text>
           </Box>
         )}
       </VStack>

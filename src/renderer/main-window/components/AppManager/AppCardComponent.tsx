@@ -82,7 +82,7 @@ const AppCardComponent = ({
           boxSize="25px"
         />
         {app.env === 'desktop' && (
-          <Tooltip label="客户端应用，需要先手动打开该应用">
+          <Tooltip label="Клиентское приложение, необходимо сначала открыть его вручную">
             <Image
               src={windowsIcon}
               boxSize="15px"
@@ -98,10 +98,10 @@ const AppCardComponent = ({
         <Badge colorScheme="gray">{app.name}</Badge>
       </HStack>
       <Box position="absolute" bottom="5px" right="-5px">
-        <Tooltip label={`设置 ${app.name} 平台`}>
+        <Tooltip label={`Настройки платформы ${app.name}`}>
           <IconButton
             variant="borderless"
-            aria-label={`设置 ${app.name} 平台`}
+            aria-label={`Настройки платформы ${app.name}`}
             fontSize="15px"
             w={4}
             h={4}

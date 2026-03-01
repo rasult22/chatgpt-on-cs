@@ -53,10 +53,10 @@ const Updater = () => {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>版本更新</ModalHeader>
+        <ModalHeader>Обновление версии</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Text>当前版本是 {currentVersion}. 检查到以下更新：</Text>
+          <Text>Текущая версия: {currentVersion}. Обнаружены следующие обновления:</Text>
           <VStack spacing={4} mt="20px">
             {updates.map((update, index) => (
               <Box key={index}>
@@ -67,10 +67,10 @@ const Updater = () => {
         </ModalBody>
         <ModalFooter>
           <Button colorScheme="blue" mr={3} onClick={confirmUpdate}>
-            立即更新到最新版本
+            Обновить до последней версии
           </Button>
           <Button variant="ghost" onClick={() => setIsUpdateModalOpen(false)}>
-            关闭
+            Закрыть
           </Button>
         </ModalFooter>
       </ModalContent>

@@ -58,17 +58,17 @@ const MessageModal = ({ isOpen, onClose, messages }: MessageModalProps) => {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>当前会话的消息</ModalHeader>
+        <ModalHeader>Сообщения текущего диалога</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Table variant="striped" colorScheme="gray" size="sm">
             <Thead>
               <Tr>
-                <Th>角色</Th>
-                <Th>内容</Th>
-                <Th>发送者</Th>
-                <Th>消息类型</Th>
-                <Th>时间</Th>
+                <Th>Роль</Th>
+                <Th>Содержимое</Th>
+                <Th>Отправитель</Th>
+                <Th>Тип сообщения</Th>
+                <Th>Время</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -94,8 +94,8 @@ const MessageModal = ({ isOpen, onClose, messages }: MessageModalProps) => {
           </Table>
           <Box display="flex" justifyContent="center" mt={4}>
             <ReactPaginate
-              previousLabel={'< 上页'}
-              nextLabel={'下页 >'}
+              previousLabel={'< Назад'}
+              nextLabel={'Далее >'}
               breakLabel={'...'}
               pageCount={pageCount}
               marginPagesDisplayed={1}
@@ -124,7 +124,7 @@ const MessageModal = ({ isOpen, onClose, messages }: MessageModalProps) => {
               onClose();
             }}
           >
-            关闭
+            Закрыть
           </Button>
         </ModalFooter>
       </ModalContent>

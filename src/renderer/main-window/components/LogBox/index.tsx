@@ -36,7 +36,7 @@ const LogBox = () => {
       }
     });
 
-    // 组件卸载时注销事件处理器
+    // отмена регистрации обработчика событий при размонтировании компонента
     return () => unregister();
   }, [registerEventHandler]); // eslint-disable-line
 
@@ -51,16 +51,16 @@ const LogBox = () => {
   return (
     <Box minHeight="150px">
       <VStack>
-        {/* 靠左对齐 */}
+        {/* выравнивание по левому краю */}
         <HStack width="full" justifyContent="flex-start">
           <Heading as="h5" size="md" ml="2" mr="5">
-            运行日志
+            Журнал работы
           </Heading>
           <Button size="sm" onClick={clearLog}>
-            清空全部日志
+            Очистить все логи
           </Button>
           <Button size="sm" onClick={openSelectedFolder}>
-            打开日志文件
+            Открыть файл логов
           </Button>
         </HStack>
 
@@ -68,8 +68,8 @@ const LogBox = () => {
           <Table size="sm">
             <Thead>
               <Tr>
-                <Th>时间</Th>
-                <Th>内容</Th>
+                <Th>Время</Th>
+                <Th>Содержание</Th>
               </Tr>
             </Thead>
             <Tbody bg="gray.100">

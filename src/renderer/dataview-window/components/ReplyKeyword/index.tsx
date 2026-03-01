@@ -75,7 +75,7 @@ const ReplyKeyword = () => {
 
   const handleInsertFile = () => {
     window.electron.ipcRenderer.sendMessage('select-file', {
-      filters: [{ name: 'Excel 模板', extensions: ['xls', 'xlsx'] }],
+      filters: [{ name: 'Шаблон Excel', extensions: ['xls', 'xlsx'] }],
     });
     window.electron.ipcRenderer.once('selected-file', async (path) => {
       const selectedPath = path as string[];
@@ -86,15 +86,15 @@ const ReplyKeyword = () => {
         await updateReplyExcel({ path: selectedPath[0] });
         refetch();
         toast({
-          title: '导入成功',
-          description: '导入成功',
+          title: 'Импорт успешен',
+          description: 'Импорт успешен',
           position: 'top',
           status: 'success',
           duration: 3000,
           isClosable: true,
         });
       } catch (e) {
-        let message = '导入失败';
+        let message = 'Ошибка импорта';
         if (e instanceof Error) {
           message = e.message;
         } else if (typeof e === 'string') {
@@ -104,7 +104,7 @@ const ReplyKeyword = () => {
         }
 
         toast({
-          title: '导入失败',
+          title: 'Ошибка импорта',
           description: message,
           position: 'top',
           status: 'error',
@@ -122,15 +122,15 @@ const ReplyKeyword = () => {
       setUpdated(true);
       await exportReplyExcel();
       toast({
-        title: '导出成功',
-        description: '导出成功',
+        title: 'Экспорт успешен',
+        description: 'Экспорт успешен',
         position: 'top',
         status: 'success',
         duration: 3000,
         isClosable: true,
       });
     } catch (e) {
-      let message = '导出失败';
+      let message = 'Ошибка экспорта';
       if (e instanceof Error) {
         message = e.message;
       } else if (typeof e === 'string') {
@@ -140,7 +140,7 @@ const ReplyKeyword = () => {
       }
 
       toast({
-        title: '导出失败',
+        title: 'Ошибка экспорта',
         description: message,
         position: 'top',
         status: 'error',
@@ -181,7 +181,7 @@ const ReplyKeyword = () => {
   return (
     <Box>
       <Box display="flex" justifyContent="space-between" mb={2}>
-        <Text>编辑回复关键词</Text>
+        <Text>Редактирование ключевых слов для ответа</Text>
         <Flex alignItems="center">
           <HStack>
             <Button
@@ -196,9 +196,9 @@ const ReplyKeyword = () => {
               onClick={handleAddKeyword}
               isLoading={updated}
             >
-              新增关键词
+              Добавить ключевое слово
             </Button>
-            <Tooltip label="导入并覆盖关键词">
+            <Tooltip label="Импортировать и перезаписать ключевые слова">
               <Button
                 size="sm"
                 variant="solid"
@@ -206,17 +206,17 @@ const ReplyKeyword = () => {
                 onClick={handleInsertFile}
                 isLoading={updated}
               >
-                覆盖导入
+                Импорт с перезаписью
               </Button>
             </Tooltip>
-            <Tooltip label="导出关键词（下载模板）">
+            <Tooltip label="Экспорт ключевых слов (скачать шаблон)">
               <Button
                 size="sm"
                 variant="solid"
                 onClick={handleExportReplyExcel}
                 isLoading={updated}
               >
-                导出
+                Экспорт
               </Button>
             </Tooltip>
           </HStack>
@@ -226,12 +226,12 @@ const ReplyKeyword = () => {
         <Table variant="striped" size="sm" className="table-tiny">
           <Thead>
             <Tr>
-              <Th>平台</Th>
-              <Th>关键词</Th>
-              <Th>回复内容</Th>
-              <Th>模糊匹配</Th>
-              <Th>正则</Th>
-              <Th>操作</Th>
+              <Th>Платформа</Th>
+              <Th>Ключевое слово</Th>
+              <Th>Содержимое ответа</Th>
+              <Th>Нечёткое совпадение</Th>
+              <Th>Регулярное выражение</Th>
+              <Th>Действия</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -258,11 +258,11 @@ const ReplyKeyword = () => {
                 >
                   {keyword.reply}
                 </Td>
-                <Td>{keyword.fuzzy ? '是' : '否'}</Td>
-                <Td>{keyword.has_regular ? '是' : '否'}</Td>
+                <Td>{keyword.fuzzy ? 'Да' : 'Нет'}</Td>
+                <Td>{keyword.has_regular ? 'Да' : 'Нет'}</Td>
                 <Td>
                   <Grid templateColumns="repeat(2, 1fr)" gap={2}>
-                    <Tooltip label="删除">
+                    <Tooltip label="Удалить">
                       <IconButton
                         size="xs" // 设置为最小尺寸
                         fontSize="13px"
@@ -273,7 +273,7 @@ const ReplyKeyword = () => {
                       />
                     </Tooltip>
 
-                    <Tooltip label="编辑">
+                    <Tooltip label="Редактировать">
                       <IconButton
                         size="xs" // 设置为最小尺寸
                         fontSize="13px"

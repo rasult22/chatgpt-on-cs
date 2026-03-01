@@ -236,10 +236,10 @@ export default class MenuBuilder {
               ],
       },
       {
-        label: '帮助',
+        label: 'Помощь',
         submenu: [
           {
-            label: '使用文档',
+            label: 'Документация',
             click() {
               shell.openExternal(
                 'https://github.com/lrhh123/ChatGPT-On-CS/wiki/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E',
@@ -247,7 +247,7 @@ export default class MenuBuilder {
             },
           },
           {
-            label: '反馈问题',
+            label: 'Сообщить о проблеме',
             click() {
               shell.openExternal(
                 'https://github.com/lrhh123/ChatGPT-On-CS/issues',
@@ -257,7 +257,7 @@ export default class MenuBuilder {
         ],
       },
       {
-        label: '调试',
+        label: 'Отладка',
         submenu: [],
       },
     ];

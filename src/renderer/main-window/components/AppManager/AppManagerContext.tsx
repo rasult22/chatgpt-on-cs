@@ -57,7 +57,7 @@ const usePlatformList = () => {
     ['platformList'],
     getPlatformList,
     {
-      retry: false, // 禁用 react-query 内置的重试机制
+      retry: false, // Отключение встроенного механизма повторных попыток react-query
     },
   );
 
@@ -80,7 +80,7 @@ const useTaskList = () => {
 };
 
 /**
- * 返回全部应用的全部实例
+ * Возвращает все экземпляры всех приложений
  */
 const useInstances = () => {
   const { data: taskData, refetch: refetchTasks } = useTaskList();
@@ -90,7 +90,7 @@ const useInstances = () => {
 };
 
 /**
- * 返回当前选择的应用下的实例
+ * Возвращает экземпляры выбранного приложения
  */
 const useFilteredInstances = (
   data: { data: App[] } | undefined,
@@ -120,7 +120,7 @@ const useFilteredInstances = (
 };
 
 /**
- * 监听刷新配置事件，避免因为重启导致的配置不同步
+ * Прослушивание события обновления конфигурации, предотвращение рассинхронизации конфигурации при перезапуске
  */
 const useRefreshConfigListener = (refetchTasks: () => void) => {
   useEffect(() => {
@@ -159,7 +159,7 @@ export const AppManagerProvider = ({ children }: AppManagerProviderProps) => {
   );
 
   /**
-   * 根据应用名称搜索实例
+   * Поиск экземпляров по имени приложения
    */
   const handleSearch = useCallback(
     (searchTerm: string) => {
@@ -181,7 +181,7 @@ export const AppManagerProvider = ({ children }: AppManagerProviderProps) => {
   );
 
   /**
-   * 删除任务
+   * Удаление задачи
    */
   const handleDelete = useCallback(
     async (taskId: string) => {
@@ -189,14 +189,14 @@ export const AppManagerProvider = ({ children }: AppManagerProviderProps) => {
         await removeTask(taskId);
         refetchTasks();
       } catch (error) {
-        console.error('删除失败:', (error as Error).message || '未知错误');
+        console.error('Ошибка удаления:', (error as Error).message || 'Неизвестная ошибка');
       }
     },
     [refetchTasks],
   );
 
   /**
-   * 添加任务
+   * Добавление задачи
    */
   const handleAddTask = useCallback(async () => {
     if (selectedAppId) {

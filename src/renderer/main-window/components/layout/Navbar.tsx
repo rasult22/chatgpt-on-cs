@@ -30,7 +30,7 @@ const Navbar = () => {
       height="60px"
     >
       <Text as="h1" fontSize="2em" letterSpacing="tighter" className="font-zh">
-        懒人客服
+        Ленивый клиентский сервис
       </Text>
 
       <Box display={{ md: 'flex' }} gap="1rem">
@@ -40,7 +40,7 @@ const Navbar = () => {
           leftIcon={<CalendarIcon />}
           onClick={handleOpenDataview}
         >
-          记录
+          Записи
         </Button>
         <Button
           size="sm"
@@ -48,14 +48,14 @@ const Navbar = () => {
           leftIcon={<ChatIcon />}
           onClick={handleOpenDataview}
         >
-          关键词
+          Ключевые слова
         </Button>
         <Button
           size="sm"
           leftIcon={<SettingsIcon />}
           onClick={handleOpenSettings}
         >
-          设置
+          Настройки
         </Button>
       </Box>
     </Flex>

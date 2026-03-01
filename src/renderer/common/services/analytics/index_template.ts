@@ -8,12 +8,12 @@ export function sendEvent(
   // visitor.event(category, action, label, value).send();
 }
 
-// 预制事件：打开按钮
+// Предустановленное событие: нажатие кнопки
 export function trackButtonClick(buttonName: string) {
   sendEvent('UI Interaction', 'Click', `Button: ${buttonName}`, 1);
 }
 
-// 预制事件：多选框
+// Предустановленное событие: чекбокс
 export function trackCheckboxChange(checkboxName: string, value: string[]) {
   sendEvent(
     'UI Interaction',
@@ -23,7 +23,7 @@ export function trackCheckboxChange(checkboxName: string, value: string[]) {
   );
 }
 
-// 预制事件：打开页面
+// Предустановленное событие: открытие страницы
 export function trackPageView(pageName: string) {
   sendEvent('Navigation', 'Open', `Page: ${pageName}`, 1);
 }

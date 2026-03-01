@@ -8,10 +8,10 @@ export enum PlatformTypeEnum {
 }
 
 export const PlatformTypeMap = {
-  [PlatformTypeEnum.HOT]: '热门',
-  [PlatformTypeEnum.E_COMMERCE]: '电商',
-  [PlatformTypeEnum.RECRUIT]: '招聘',
-  [PlatformTypeEnum.LAW]: '法律咨询',
-  [PlatformTypeEnum.ME_MEDIA]: '自媒体',
-  [PlatformTypeEnum.OTHER]: '其他',
+  [PlatformTypeEnum.HOT]: 'Популярные',
+  [PlatformTypeEnum.E_COMMERCE]: 'Электронная коммерция',
+  [PlatformTypeEnum.RECRUIT]: 'Подбор персонала',
+  [PlatformTypeEnum.LAW]: 'Юридические консультации',
+  [PlatformTypeEnum.ME_MEDIA]: 'Блогеры',
+  [PlatformTypeEnum.OTHER]: 'Другое',
 };

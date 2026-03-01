@@ -22,9 +22,9 @@ const Footer = () => {
     >
       <Stack>
         <Box position={'absolute'}>
-          <Tooltip label="查看文档获取帮助">
+          <Tooltip label="Просмотрите документацию для получения помощи">
             <Link href="https://doc.lazaytools.top/docs" isExternal mr="auto">
-              📚文档
+              📚Документация
             </Link>
           </Tooltip>
         </Box>

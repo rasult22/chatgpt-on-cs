@@ -168,11 +168,11 @@ const EditKeyword = ({
       }
 
       if (updatedReply.keyword === '') {
-        throw new Error('关键词不能为空');
+        throw new Error('Ключевое слово не может быть пустым');
       }
 
       if (updatedReply.reply === '') {
-        throw new Error('回复内容不能为空');
+        throw new Error('Содержимое ответа не может быть пустым');
       }
 
       if (updatedReply.id) {
@@ -198,7 +198,7 @@ const EditKeyword = ({
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
-          {editKeyword?.id ? '编辑关键词' : '新增关键词'}
+          {editKeyword?.id ? 'Редактирование ключевого слова' : 'Добавление ключевого слова'}
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
@@ -216,7 +216,7 @@ const EditKeyword = ({
             <Box m={2}>
               <FormControl display="flex" alignItems="center">
                 <FormLabel htmlFor="fuzzy" mb="0">
-                  模糊匹配
+                  Нечёткое совпадение
                 </FormLabel>
                 <Switch
                   id="fuzzy"

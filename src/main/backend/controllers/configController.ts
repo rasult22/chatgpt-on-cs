@@ -12,8 +12,8 @@ import { CTX_APP_ID, CTX_INSTANCE_ID } from '../constants';
 
 export class ConfigController {
   /**
-   * 取得适合当前聊天上下文的配置
-   * @param ctx 聊天上下文
+   * Получение конфигурации для текущего контекста чата
+   * @param ctx контекст чата
    * @returns
    */
   public async get(ctx: Context): Promise<Config> {
@@ -22,36 +22,36 @@ export class ConfigController {
 
     let config;
 
-    // 先查找实例配置
+    // Сначала ищем конфигурацию экземпляра
     if (instanceId) {
       config = await Config.findOne({
         where: { platform_id: appId, instance_id: instanceId },
       });
 
-      // 如果实例配置存在且激活，直接返回
+      // Если конфигурация экземпляра существует и активирована, возвращаем её
       if (config && config.active) {
         return this.mergeWithGlobalConfig(config);
       }
     }
 
-    // 查找应用级别配置
+    // Поиск конфигурации уровня приложения
     if (appId) {
       config = await Config.findOne({
         where: { platform_id: appId, instance_id: '' },
       });
 
-      // 如果应用级别配置存在且激活，直接返回
+      // Если конфигурация приложения существует и активирована, возвращаем её
       if (config && config.active) {
         return this.mergeWithGlobalConfig(config);
       }
     }
 
-    // 查找全局配置
+    // Поиск глобальной конфигурации
     config = await Config.findOne({
       where: { global: true },
     });
 
-    // 如果全局配置不存在，创建一个默认的全局配置
+    // Если глобальная конфигурация не существует, создаём стандартную
     if (!config) {
       config = await Config.create({
         global: true,
@@ -62,9 +62,9 @@ export class ConfigController {
   }
 
   /**
-   * 合并全局配置到指定配置
-   * @param config 指定的配置
-   * @returns 合并后的配置
+   * Объединение глобальной конфигурации с указанной
+   * @param config указанная конфигурация
+   * @returns объединённая конфигурация
    */
   private async mergeWithGlobalConfig(config: Config): Promise<Config> {
     const globalConfig = await Config.findOne({
@@ -72,7 +72,7 @@ export class ConfigController {
     });
 
     if (globalConfig) {
-      // 合并特定的全局配置项到实例配置
+      // Объединение определённых глобальных параметров с конфигурацией экземпляра
       config.has_keyword_match = globalConfig.has_keyword_match;
       config.has_paused = globalConfig.has_paused;
       config.has_use_gpt = globalConfig.has_use_gpt;
@@ -80,7 +80,7 @@ export class ConfigController {
       config.has_esc_close = globalConfig.has_esc_close;
     }
 
-    // 检查 key 和 base_url，如果不存在则使用全局配置
+    // Проверка key и base_url, если отсутствуют — используем глобальную конфигурацию
     config.llm_type = config.llm_type || globalConfig?.llm_type || 'chatgpt';
     config.model = config.model || globalConfig?.model || 'gpt-3.5-turbo';
     config.key = config.key || globalConfig?.key || '';
@@ -90,7 +90,7 @@ export class ConfigController {
   }
 
   /**
-   * 激活或关闭配置
+   * Активация или деактивация конфигурации
    * @param
    * @returns
    */
@@ -135,14 +135,14 @@ export class ConfigController {
       });
     }
 
-    // 更新配置
+    // Обновление конфигурации
     if (config) {
       await config.update({ active });
     }
   }
 
   /**
-   * 取得自定义插件
+   * Получение пользовательского плагина
    * @param
    * @returns
    */
@@ -152,7 +152,7 @@ export class ConfigController {
   }
 
   /**
-   * 取得插件配置
+   * Получение конфигурации плагина
    * @param pluginId
    * @returns
    */
@@ -162,7 +162,7 @@ export class ConfigController {
   }
 
   /**
-   * 新增自定义插件
+   * Добавление пользовательского плагина
    * @param
    * @returns
    */
@@ -198,7 +198,7 @@ export class ConfigController {
   }
 
   /**
-   * 删除自定义插件
+   * Удаление пользовательского плагина
    * @param
    * @returns
    */
@@ -210,7 +210,7 @@ export class ConfigController {
   }
 
   /**
-   * 更新自定义插件
+   * Обновление пользовательского плагина
    * @param
    * @returns
    */

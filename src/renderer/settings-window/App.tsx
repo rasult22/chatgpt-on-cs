@@ -34,7 +34,7 @@ import {
 import theme from '../common/styles/theme';
 import '../common/App.css';
 
-// TODO: 后续考虑将 monaco-editor 的路径改为本地路径
+// TODO: В дальнейшем рассмотреть возможность замены пути monaco-editor на локальный
 loader.config({
   paths: { vs: 'https://jsd.onmicrosoft.cn/npm/monaco-editor@0.43.0/min/vs' },
 });
@@ -64,7 +64,7 @@ const App = () => {
     trackPageView('Settings');
   }, []);
 
-  // 打印当前的 url
+  // Вывод текущего url
   // console.log('current url:', window.location.href);
 
   const fetchConfigActive = useCallback(
@@ -80,7 +80,7 @@ const App = () => {
         const errormsg =
           error instanceof Error ? error.message : JSON.stringify(error);
         toast({
-          title: '获取配置失败',
+          title: 'Не удалось получить конфигурацию',
           description: errormsg,
           status: 'error',
           duration: 5000,
@@ -106,7 +106,7 @@ const App = () => {
           instanceId,
         });
         toast({
-          title: '更新配置成功',
+          title: 'Конфигурация успешно обновлена',
           position: 'top',
           status: 'success',
           duration: 5000,
@@ -118,7 +118,7 @@ const App = () => {
         const errormsg =
           error instanceof Error ? error.message : JSON.stringify(error);
         toast({
-          title: '更新配置失败',
+          title: 'Не удалось обновить конфигурацию',
           description: errormsg,
           status: 'error',
           duration: 5000,
@@ -187,21 +187,21 @@ const App = () => {
           _hover={{ bg: 'gray.300' }}
           textAlign="left"
         >
-          通用设置
+          Общие настройки
         </Tab>
         <Tab
           _selected={{ bg: 'gray.200' }}
           _hover={{ bg: 'gray.300' }}
           textAlign="left"
         >
-          AI 配置
+          Конфигурация ИИ
         </Tab>
         <Tab
           _selected={{ bg: 'gray.200' }}
           _hover={{ bg: 'gray.300' }}
           textAlign="left"
         >
-          {settings.appId || settings.instanceId ? '' : '全局'}插件设置
+          {settings.appId || settings.instanceId ? '' : 'Глобальные '}Настройки плагинов
         </Tab>
 
         {!settings.appId && (
@@ -210,7 +210,7 @@ const App = () => {
             _hover={{ bg: 'gray.300' }}
             textAlign="left"
           >
-            关于
+            О программе
           </Tab>
         )}
       </TabList>
@@ -218,7 +218,7 @@ const App = () => {
       <TabPanels flex="1" overflowY="auto" p={4}>
         <TabPanel>
           <Heading as="h3" size="md" mb={4}>
-            通用设置
+            Общие настройки
           </Heading>
           <GeneralSettings
             style={{ width: '60vw' }}
@@ -228,7 +228,7 @@ const App = () => {
         </TabPanel>
         <TabPanel>
           <Heading as="h3" size="md" mb={4}>
-            AI 配置
+            Конфигурация ИИ
           </Heading>
           <LLMSettings
             appId={settings.appId}
@@ -275,22 +275,22 @@ const App = () => {
             <ModalOverlay />
             <ModalContent>
               <ModalHeader>
-                设置
+                Настройки
                 <Checkbox
                   ml={4}
                   isChecked={isActive}
                   onChange={handleCheckboxChange}
                 >
-                  激活{' '}
+                  Активировать{' '}
                   {settings.instanceId
-                    ? `客服 ${settings.instanceId} 设置`
-                    : `应用 ${settings.appId} 设置`}
+                    ? `настройки оператора ${settings.instanceId}`
+                    : `настройки приложения ${settings.appId}`}
                 </Checkbox>
                 <Text color="gray.500" fontSize="sm">
-                  请注意：激活设置后，设置才会生效
+                  Обратите внимание: настройки вступят в силу только после активации
                 </Text>
               </ModalHeader>
-              <ModalBody>{/* 具体内容可在这里添加 */}</ModalBody>
+              <ModalBody>{/* Содержимое можно добавить здесь */}</ModalBody>
             </ModalContent>
           </Modal>
         )}
@@ -306,7 +306,7 @@ const App = () => {
               handleCheckboxChange({ target: { checked: false } });
             }}
           >
-            取消激活
+            Деактивировать
           </Button>
         )}
       </ChakraProvider>

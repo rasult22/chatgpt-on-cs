@@ -39,7 +39,7 @@ const Panels = () => {
       return resp;
     } catch (error) {
       toast({
-        title: '获取配置失败',
+        title: 'Не удалось получить конфигурацию',
         description: error instanceof Error ? error.message : String(error),
         status: 'error',
       });
@@ -57,7 +57,7 @@ const Panels = () => {
         }));
 
         toast({
-          title: '自动回复已暂停',
+          title: 'Автоответчик приостановлен',
           status: 'info',
           position: 'top',
           duration: 5000,
@@ -92,10 +92,10 @@ const Panels = () => {
 
       if ('hasPaused' in newConfig) {
         toast({
-          title: '更新配置成功',
+          title: 'Конфигурация успешно обновлена',
           description: newConfig.hasPaused
-            ? '已经暂停自动回复功能'
-            : '已经开启自动回复功能',
+            ? 'Функция автоответа приостановлена'
+            : 'Функция автоответа включена',
           status: 'success',
           duration: 5000,
           isClosable: true,
@@ -105,7 +105,7 @@ const Panels = () => {
       const errormsg =
         error instanceof Error ? error.message : JSON.stringify(error);
       toast({
-        title: '更新配置失败',
+        title: 'Не удалось обновить конфигурацию',
         description: errormsg,
         status: 'error',
         duration: 5000,
@@ -119,7 +119,7 @@ const Panels = () => {
       <HStack width="full" alignItems="center" justifyContent="space-between">
         <VStack width="35%">
           <Text fontSize="md">
-            按下{driverSettings.hasPaused ? '开启' : '关闭'}自动回复
+            Нажмите, чтобы {driverSettings.hasPaused ? 'включить' : 'выключить'} автоответ
           </Text>
           <IconButton
             icon={driverSettings.hasPaused ? <FiPlay /> : <FiPause />}
@@ -141,8 +141,8 @@ const Panels = () => {
                 handleUpdateConfig({ hasKeywordMatch: e.target.checked })
               }
             >
-              <Tooltip label="将优先匹配关键词，未匹配的才去调用 GPT 接口">
-                关键词匹配
+              <Tooltip label="Приоритет отдаётся совпадению ключевых слов; GPT вызывается только при отсутствии совпадений">
+                Совпадение ключевых слов
               </Tooltip>
             </Checkbox>
             <Checkbox
@@ -151,8 +151,8 @@ const Panels = () => {
                 handleUpdateConfig({ hasUseGpt: e.target.checked })
               }
             >
-              <Tooltip label="是否开启 GPT 回复，关闭后只会使用关键词回复">
-                GPT 回复
+              <Tooltip label="Включить ответы GPT; при отключении используются только ответы по ключевым словам">
+                Ответы GPT
               </Tooltip>
             </Checkbox>
           </HStack>
@@ -163,8 +163,8 @@ const Panels = () => {
                 handleUpdateConfig({ hasTransfer: e.target.checked })
               }
             >
-              <Tooltip label="如果匹配到设定的关键词，将自动转人工">
-                关键词转人工
+              <Tooltip label="При совпадении ключевого слова диалог автоматически переводится на оператора">
+                Перевод на оператора по ключевым словам
               </Tooltip>
             </Checkbox>
             <Checkbox
@@ -173,8 +173,8 @@ const Panels = () => {
                 handleUpdateConfig({ hasReplace: e.target.checked })
               }
             >
-              <Tooltip label="如果匹配到设定的关键词，将自动替换成自定义的关键词">
-                关键词替换
+              <Tooltip label="При совпадении ключевого слова оно автоматически заменяется на пользовательское">
+                Замена ключевых слов
               </Tooltip>
             </Checkbox>
           </HStack>
@@ -185,8 +185,8 @@ const Panels = () => {
                 handleUpdateConfig({ hasEscClose: e.target.checked })
               }
             >
-              <Tooltip label="当按下 ESC 键时自动暂停">
-                按 ESC 键自动暂停
+              <Tooltip label="Автоматическая пауза при нажатии ESC">
+                Пауза по нажатию ESC
               </Tooltip>
             </Checkbox>
           </HStack>
