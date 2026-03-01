@@ -138,9 +138,9 @@ const PluginEdit = () => {
         code: inCode || plugin.code || PluginExampleCode,
       });
       toast({
-        title: '代码已保存',
+        title: 'Код сохранён',
         position: 'top',
-        description: '插件已更新',
+        description: 'Плагин обновлён',
         status: 'success',
         duration: 3000,
         isClosable: true,
@@ -167,14 +167,14 @@ const PluginEdit = () => {
           colorScheme="teal"
           onClick={() => navigate('/')}
         >
-          返回列表
+          Назад к списку
         </Button>
       </Box>
       <Tabs width="70vw" flex="1">
         <TabList>
-          <Tab>插件基础信息</Tab>
-          <Tab>插件编辑</Tab>
-          <Tab>测试插件</Tab>
+          <Tab>Основная информация о плагине</Tab>
+          <Tab>Редактор плагина</Tab>
+          <Tab>Тестирование плагина</Tab>
         </TabList>
 
         <TabPanels>
