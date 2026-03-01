@@ -55,7 +55,7 @@ class BKServer {
       connectionStateRecovery: {
         maxDisconnectionDuration: 2 * 60 * 1000,
         skipMiddlewares: true,
-        // 配置使用 websocket
+        // Настройка использования websocket
       },
       transports: ['websocket'],
     });
@@ -90,7 +90,7 @@ class BKServer {
 
     this.configureSocketIO();
     this.setupRoutes();
-    // 开启定时任务
+    // Запуск периодических задач
     setInterval(() => {
       this.appService.initTasks();
     }, 5 * 1000);
@@ -286,7 +286,7 @@ class BKServer {
           mode: item.mode,
           fuzzy: item.fuzzy,
           has_regular: item.has_regular,
-          app_name: ptf ? ptf.name : '全局',
+          app_name: ptf ? ptf.name : 'Глобальный',
         };
 
         results.push(result);
@@ -400,7 +400,7 @@ class BKServer {
           has_regular: item.has_regular,
           fuzzy: item.fuzzy,
           app_id: item.app_id,
-          app_name: ptf ? ptf.name : '全局',
+          app_name: ptf ? ptf.name : 'Глобальный',
         };
 
         results.push(result);
@@ -494,7 +494,7 @@ class BKServer {
           keyword: item.keyword,
           replace: item.replace,
           app_id: item.app_id,
-          app_name: ptf ? ptf.name : '全局',
+          app_name: ptf ? ptf.name : 'Глобальный',
           has_regular: item.has_regular,
           fuzzy: item.fuzzy,
         };

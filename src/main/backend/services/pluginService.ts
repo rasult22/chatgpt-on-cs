@@ -219,7 +219,7 @@ export class PluginService {
       console.error('Plugin execution error:', error);
       this.log.error(`Информация из лога выполнения плагина: ${JSON.stringify(consoleOutput)}`);
       this.log.error(
-        `回复失败: ${error instanceof Error ? error.message : String(error)}`,
+        `Ошибка ответа: ${error instanceof Error ? error.message : String(error)}`,
       );
 
       error.consoleOutput = consoleOutput;

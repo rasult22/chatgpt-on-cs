@@ -53,11 +53,11 @@ const AccountSettings = () => {
             onClick={handleActivation}
             isDisabled={isExpired}
           >
-            激活
+            Активировать
           </Button>
           {activationStatus && (
             <Alert
-              status={activationStatus === '激活成功' ? 'success' : 'error'}
+              status={activationStatus === 'Активация успешна' ? 'success' : 'error'}
             >
               <AlertIcon />
               {activationStatus}
@@ -66,7 +66,7 @@ const AccountSettings = () => {
           {isExpired && (
             <Alert status="error">
               <AlertIcon />
-              激活码已过期，请联系支持获取新的激活码。
+              Код активации истёк. Свяжитесь со службой поддержки для получения нового кода.
             </Alert>
           )}
         </VStack>
