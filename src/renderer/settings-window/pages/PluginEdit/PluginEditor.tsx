@@ -29,7 +29,7 @@ type PluginEditorProps = {
   handleSaveCode: (code?: string) => void;
 };
 
-// 子组件：插件编辑页
+// Дочерний компонент: страница редактирования плагина
 const PluginEditor = ({
   plugin,
   setPlugin,
@@ -52,13 +52,13 @@ const PluginEditor = ({
             label: 'require',
             kind: monaco.languages.CompletionItemKind.Function,
             insertText: 'require()',
-            documentation: '引入模块',
+            documentation: 'Импорт модуля',
           },
           {
             label: 'console',
             kind: monaco.languages.CompletionItemKind.Function,
             insertText: 'console.log()',
-            documentation: '打印日志',
+            documentation: 'Вывод в лог',
           },
         ];
         return { suggestions };
@@ -71,7 +71,7 @@ const PluginEditor = ({
 
     monaco.editor.addEditorAction({
       id: 'save-code',
-      label: '保存代码',
+      label: 'Сохранить код',
       // eslint-disable-next-line no-bitwise
       keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS],
       run: () => {
@@ -95,7 +95,7 @@ const PluginEditor = ({
           zIndex="1"
         >
           <Text color="white" fontSize="lg">
-            系统插件无法编辑
+            Системный плагин нельзя редактировать
           </Text>
         </Flex>
       )}
@@ -108,10 +108,10 @@ const PluginEditor = ({
             colorScheme="teal"
             size="sm"
           >
-            保存代码
+            Сохранить код
           </Button>
           <Button leftIcon={<RepeatIcon />} onClick={onOpen} size="sm">
-            重置代码
+            Сбросить код
           </Button>
         </HStack>
         <Box width="100%" height="400px">
@@ -134,14 +134,14 @@ const PluginEditor = ({
           <AlertDialogOverlay>
             <AlertDialogContent>
               <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                重置代码
+                Сбросить код
               </AlertDialogHeader>
               <AlertDialogBody>
-                你确定要重置代码吗？这将会清空当前的代码。
+                Вы уверены, что хотите сбросить код? Текущий код будет удалён.
               </AlertDialogBody>
               <AlertDialogFooter>
                 <Button ref={cancelRef} onClick={onClose}>
-                  取消
+                  Отмена
                 </Button>
                 <Button
                   colorScheme="red"
@@ -152,7 +152,7 @@ const PluginEditor = ({
                   }}
                   ml={3}
                 >
-                  重置
+                  Сбросить
                 </Button>
               </AlertDialogFooter>
             </AlertDialogContent>

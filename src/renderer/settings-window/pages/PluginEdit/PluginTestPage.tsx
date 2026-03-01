@@ -79,7 +79,7 @@ const PluginTestPage = ({ code }: { code?: string }) => {
       setConsoleLogs(resp.consoleOutput || []);
       if (resp.status && resp.message) {
         toast({
-          title: '插件测试通过',
+          title: 'Тест плагина пройден',
           position: 'top',
           description: resp.message,
           status: 'success',
@@ -87,15 +87,15 @@ const PluginTestPage = ({ code }: { code?: string }) => {
           isClosable: true,
         });
       } else {
-        let error_msg = '未知错误';
+        let error_msg = 'Неизвестная ошибка';
         if (resp.error) {
           error_msg = resp.error;
         } else if (!resp.message) {
-          error_msg = '回复消息为空';
+          error_msg = 'Ответное сообщение пустое';
         }
 
         toast({
-          title: '插件测试失败',
+          title: 'Тест плагина не пройден',
           position: 'top',
           description: error_msg,
           status: 'error',
@@ -106,8 +106,8 @@ const PluginTestPage = ({ code }: { code?: string }) => {
     } catch (error) {
       console.error(error);
       toast({
-        title: '检查插件失败',
-        description: error instanceof Error ? error.message : '未知错误',
+        title: 'Не удалось проверить плагин',
+        description: error instanceof Error ? error.message : 'Неизвестная ошибка',
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -118,7 +118,7 @@ const PluginTestPage = ({ code }: { code?: string }) => {
   };
 
   const handleSetDefault = () => {
-    // MockCtx 是一个 Map 对象
+    // MockCtx — это объект Map
     clearContext();
 
     // eslint-disable-next-line no-restricted-syntax
@@ -126,7 +126,7 @@ const PluginTestPage = ({ code }: { code?: string }) => {
       setContext(key, value);
     }
 
-    // 先清空所有消息
+    // Сначала очистить все сообщения
     for (let i = messages.length - 1; i >= 0; i -= 1) {
       removeMessage(i);
     }
@@ -148,17 +148,17 @@ const PluginTestPage = ({ code }: { code?: string }) => {
           size="sm"
           isLoading={hasRuning}
         >
-          测试插件
+          Тестировать плагин
         </Button>
         <Button leftIcon={<RepeatIcon />} onClick={handleSetDefault} size="sm">
-          设置默认
+          Установить по умолчанию
         </Button>
       </HStack>
 
       <Flex width="100%" justifyContent="space-between">
         <Box width="48%">
           <FormControl>
-            <FormLabel>测试上下文</FormLabel>
+            <FormLabel>Тестовый контекст</FormLabel>
             <Select
               value={selectedContextKey}
               onChange={(e) => setSelectedContextKey(e.target.value)}
@@ -171,7 +171,7 @@ const PluginTestPage = ({ code }: { code?: string }) => {
             </Select>
           </FormControl>
           <FormControl mt={4}>
-            <FormLabel>上下文的输入值</FormLabel>
+            <FormLabel>Значение контекста</FormLabel>
             <Input
               value={contextValue}
               onChange={(e) => setContextValue(e.target.value)}
@@ -183,14 +183,14 @@ const PluginTestPage = ({ code }: { code?: string }) => {
             colorScheme="blue"
             size="sm"
           >
-            设置上下文内容
+            Установить содержимое контекста
           </Button>
           <Divider my={4} />
           <Table variant="simple">
             <Thead>
               <Tr>
-                <Th>上下文主键</Th>
-                <Th>上下文的值</Th>
+                <Th>Ключ контекста</Th>
+                <Th>Значение контекста</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -206,7 +206,7 @@ const PluginTestPage = ({ code }: { code?: string }) => {
 
         <Box width="48%">
           <FormControl>
-            <FormLabel>发送者</FormLabel>
+            <FormLabel>Отправитель</FormLabel>
             <Input
               value={newMessage.sender}
               onChange={(e) =>
@@ -215,7 +215,7 @@ const PluginTestPage = ({ code }: { code?: string }) => {
             />
           </FormControl>
           <FormControl mt={4}>
-            <FormLabel>消息内容</FormLabel>
+            <FormLabel>Содержимое сообщения</FormLabel>
             <Input
               value={newMessage.content}
               onChange={(e) =>
@@ -235,13 +235,13 @@ const PluginTestPage = ({ code }: { code?: string }) => {
                   })
                 }
               >
-                <option value="SELF">自己的消息</option>
-                <option value="OTHER">别人的消息</option>
-                <option value="SYSTEM">系统消息</option>
+                <option value="SELF">Своё сообщение</option>
+                <option value="OTHER">Чужое сообщение</option>
+                <option value="SYSTEM">Системное сообщение</option>
               </Select>
             </FormControl>
             <FormControl>
-              <FormLabel>消息类型</FormLabel>
+              <FormLabel>Тип сообщения</FormLabel>
               <Select
                 value={newMessage.type}
                 onChange={(e) =>
@@ -251,10 +251,10 @@ const PluginTestPage = ({ code }: { code?: string }) => {
                   })
                 }
               >
-                <option value="TEXT">文本</option>
-                <option value="IMAGE">图片</option>
-                <option value="VIDEO">视频</option>
-                <option value="FILE">文件</option>
+                <option value="TEXT">Текст</option>
+                <option value="IMAGE">Изображение</option>
+                <option value="VIDEO">Видео</option>
+                <option value="FILE">Файл</option>
               </Select>
             </FormControl>
           </HStack>
@@ -264,7 +264,7 @@ const PluginTestPage = ({ code }: { code?: string }) => {
             colorScheme="blue"
             size="sm"
           >
-            添加消息
+            Добавить сообщение
           </Button>
           <Divider my={4} />
           <Box>
@@ -291,7 +291,7 @@ const PluginTestPage = ({ code }: { code?: string }) => {
                   colorScheme="red"
                   onClick={() => removeMessage(index)}
                 >
-                  删除
+                  Удалить
                 </Button>
               </HStack>
             ))}
@@ -302,13 +302,13 @@ const PluginTestPage = ({ code }: { code?: string }) => {
       <Divider />
       <Box width="100%">
         <HStack justify="space-between">
-          <Text fontWeight="bold">查看日志</Text>
+          <Text fontWeight="bold">Просмотр логов</Text>
           <Button
             onClick={() => setConsoleLogs([])}
             colorScheme="red"
             size="sm"
           >
-            清空日志
+            Очистить логи
           </Button>
         </HStack>
         {consoleLogs && consoleLogs.length > 0 && (

@@ -64,16 +64,16 @@ const PluginBasicInfo: React.FC<PluginBasicInfoProps> = ({
           zIndex="1"
         >
           <Text color="white" fontSize="lg">
-            系统插件无法编辑
+            Системный плагин нельзя редактировать
           </Text>
         </Flex>
       )}
 
       <VStack spacing="4" align="start" width="100%">
-        {plugin.author && <Text>作者: {plugin.author}</Text>}
+        {plugin.author && <Text>Автор: {plugin.author}</Text>}
         <HStack>
           <Input
-            placeholder="插件标题"
+            placeholder="Название плагина"
             value={plugin.title}
             onChange={(e) => handleUpdateConfig({ title: e.target.value })}
           />
@@ -91,12 +91,12 @@ const PluginBasicInfo: React.FC<PluginBasicInfoProps> = ({
         </HStack>
 
         <Textarea
-          placeholder="描述"
+          placeholder="Описание"
           value={plugin.description}
           onChange={(e) => handleUpdateConfig({ description: e.target.value })}
         />
         <VStack align="start" width="100%">
-          <Text>标签:</Text>
+          <Text>Теги:</Text>
           <HStack wrap="wrap">
             {plugin.tags &&
               plugin.tags.map((tag, idx) => (
@@ -112,7 +112,7 @@ const PluginBasicInfo: React.FC<PluginBasicInfoProps> = ({
                 </Tag>
               ))}
           </HStack>
-          <Input placeholder="按 Enter 添加标签" onKeyDown={handleTagAdd} />
+          <Input placeholder="Нажмите Enter для добавления тега" onKeyDown={handleTagAdd} />
         </VStack>
       </VStack>
     </Box>
