@@ -64,14 +64,14 @@ const EditKeyword = ({
   const handleSave = async () => {
     try {
       if (replyList.length === 0) {
-        throw new Error('回复内容不能为空');
+        throw new Error('Содержимое ответа не может быть пустым');
       }
 
       await handleEdit(replyList.join('[or]'));
 
       toast({
         position: 'top',
-        title: '保存成功',
+        title: 'Сохранено успешно',
         status: 'success',
         duration: 3000,
         isClosable: true,
@@ -93,7 +93,7 @@ const EditKeyword = ({
     <Modal isOpen={isOpen} onClose={onClose} size={'4xl'}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>编辑默认回复</ModalHeader>
+        <ModalHeader>Редактирование ответа по умолчанию</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <ReplyInput

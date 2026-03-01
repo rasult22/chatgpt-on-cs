@@ -103,14 +103,14 @@ class BKServer {
 
       socket.on('disconnect', () => {
         console.log('user disconnected');
-        // 再关闭这个连接绑定的事件处理器
+        // Затем удаляем обработчики событий, привязанные к этому соединению
         socket.removeAllListeners();
       });
     });
   }
 
   private setupRoutes(): void {
-    // 查询聊天会话
+    // Запрос диалоговых сессий
     this.app.post(
       '/api/v1/message/session',
       asyncHandler(async (req, res) => {
@@ -129,7 +129,7 @@ class BKServer {
       }),
     );
 
-    // 查询聊天消息
+    // Запрос сообщений чата
     this.app.post(
       '/api/v1/message/list',
       asyncHandler(async (req, res) => {
@@ -142,7 +142,7 @@ class BKServer {
       }),
     );
 
-    // 导出消息到 Excel
+    // Экспорт сообщений в Excel
     this.app.get('/api/v1/message/excel', async (req, res) => {
       try {
         const path = await this.messageController.exportExcel();
@@ -156,7 +156,7 @@ class BKServer {
       }
     });
 
-    // 获取所有平台
+    // Получение всех платформ
     this.app.get(
       '/api/v1/base/platform/all',
       asyncHandler(async (req, res) => {
@@ -168,7 +168,7 @@ class BKServer {
       }),
     );
 
-    // 取得平台是否激活
+    // Проверка активности платформы
     this.app.get(
       '/api/v1/base/platform/active',
       asyncHandler(async (req, res) => {
@@ -186,7 +186,7 @@ class BKServer {
       }),
     );
 
-    // 更新平台激活状态
+    // Обновление статуса активации платформы
     this.app.post(
       '/api/v1/base/platform/active',
       asyncHandler(async (req, res) => {
@@ -202,7 +202,7 @@ class BKServer {
       }),
     );
 
-    // 获取配置
+    // Получение конфигурации
     this.app.get(
       '/api/v1/base/setting',
       asyncHandler(async (req, res) => {
@@ -226,7 +226,7 @@ class BKServer {
       }),
     );
 
-    // 更新配置
+    // Обновление конфигурации
     this.app.post(
       '/api/v1/base/setting',
       asyncHandler(async (req, res) => {
