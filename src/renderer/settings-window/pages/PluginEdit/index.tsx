@@ -222,7 +222,7 @@ const PluginEdit = () => {
           }
           {currentPlugin && currentPlugin.id ? (
             <Button leftIcon={<FiTrash2 />} colorScheme="red" onClick={onOpen}>
-              删除
+              Удалить
             </Button>
           ) : (
             <Button
@@ -230,7 +230,7 @@ const PluginEdit = () => {
               colorScheme="blue"
               onClick={handleAddNewPlugin}
             >
-              新增
+              Добавить
             </Button>
           )}
         </HStack>
@@ -244,14 +244,14 @@ const PluginEdit = () => {
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              删除插件
+              Удаление плагина
             </AlertDialogHeader>
             <AlertDialogBody>
-              你确定要删除插件吗？这个操作不可逆。
+              Вы уверены, что хотите удалить плагин? Это действие необратимо.
             </AlertDialogBody>
             <AlertDialogFooter>
               <Button ref={cancelRef} onClick={onClose}>
-                取消
+                Отмена
               </Button>
               <Button
                 colorScheme="red"
@@ -262,7 +262,7 @@ const PluginEdit = () => {
                 }}
                 ml={3}
               >
-                删除
+                Удалить
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
