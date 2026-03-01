@@ -147,7 +147,7 @@ const PluginPage = ({ appId, instanceId }: PluginPageProps) => {
           cfg: newConfig,
         });
       } else {
-        // 先复制一份到自定义插件，然后激活
+        // Сначала скопировать в пользовательские плагины, затем активировать
         const newPlugin = {
           ...plugin,
           source: 'custom',
@@ -174,9 +174,9 @@ const PluginPage = ({ appId, instanceId }: PluginPageProps) => {
       await refetchLocalLoading();
 
       toast({
-        title: '激活插件成功',
+        title: 'Плагин активирован успешно',
         position: 'top',
-        description: `已经激活 ${plugin.title} 插件`,
+        description: `Плагин ${plugin.title} активирован`,
         status: 'success',
         duration: 3000,
         isClosable: true,
@@ -184,7 +184,7 @@ const PluginPage = ({ appId, instanceId }: PluginPageProps) => {
     } catch (error) {
       console.error(error);
       toast({
-        title: '激活插件失败',
+        title: 'Не удалось активировать плагин',
         position: 'top',
         description:
           error instanceof Error ? error.message : JSON.stringify(error),
