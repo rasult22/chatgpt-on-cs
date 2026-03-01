@@ -218,13 +218,13 @@ const GeneralSettings = ({
             }
           />
           <Button ml={2} onClick={onOpenEditKeyword}>
-            编辑
+            Редактировать
           </Button>
         </Flex>
       </FormControl>
 
-      <Tooltip label="回复等待时间，当设置了随机时间则，等待时间为 “固定等待时间” + “随机等待时间”">
-        <Text mb="8px">回复等待时间（单位秒）: {` ${getReplySpeedStr()}`}</Text>
+      <Tooltip label=”Время ожидания ответа. При установке случайного времени итоговое время = «Фиксированное время ожидания» + «Случайное время ожидания»”>
+        <Text mb=”8px”>Время ожидания ответа (в секундах): {` ${getReplySpeedStr()}`}</Text>
       </Tooltip>
       <RangeSlider
         min={0}
@@ -242,19 +242,19 @@ const GeneralSettings = ({
         <RangeSliderTrack>
           <RangeSliderFilledTrack />
         </RangeSliderTrack>
-        <Tooltip label="固定等待时间">
+        <Tooltip label="Фиксированное время ожидания">
           <RangeSliderThumb index={0} />
         </Tooltip>
-        <Tooltip label="随机等待时间">
+        <Tooltip label="Случайное время ожидания">
           <RangeSliderThumb index={1} />
         </Tooltip>
       </RangeSlider>
 
       <Flex mt={3}>
         <Text mb="8px" mr={3}>
-          上下文消息数: {config.contextCount}
+          Количество сообщений контекста: {config.contextCount}
         </Text>
-        <Tooltip label="使用 GPT 回复会指定的消息数量传递给 GPT 去生成下一条回复，数量设置的越大回复的速度越慢">
+        <Tooltip label="Указанное количество сообщений передаётся GPT для генерации ответа; чем больше значение, тем медленнее ответ">
           <Box color={'gray.500'}>
             <Icon as={FiHelpCircle} w={6} h={6} />
           </Box>

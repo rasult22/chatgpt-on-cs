@@ -431,20 +431,20 @@ export class KeywordReplyController {
       { key: 'platform', width: 32 },
     ];
 
-    // 添加复杂的标题描述并设置换行和加粗
-    worksheet.mergeCells('A1:D1'); // 合并第一行的四个单元格
+    // Добавление описания заголовка с переносом строк и жирным шрифтом
+    worksheet.mergeCells('A1:D1'); // Объединение четырёх ячеек первой строки
     const titleCell = worksheet.getCell('A1');
-    titleCell.value = `匹配关键词：
-    * 有时候我们希望能匹配多个关键词时，可以使用 “|” 分隔不同的关键词
-    * 模糊匹配使用 “*” 符号，例如 “你好*”，那么只要用户输入的内容以 “你好” 开头就会回复你设置的回复内容.
-    * 开始结束匹配符，可以使用 “啥时[and]发货” 这样表达，那么只要用户输入的内容以 “啥时” 开头，并且以 “发货” 结尾，就能匹配上你设置的关键词
-    * 是否支持正则匹配，如果支持正则匹配，那么可以使用正则表达式来匹配关键词
-    * 是否支持模糊匹配，如果支持模糊匹配，那么可以使用 “*” 来匹配任意字符
-    
-    可使用的平台名称：${
+    titleCell.value = `Совпадение ключевых слов:
+    * Для совпадения нескольких ключевых слов используйте «|» для разделения
+    * Для нечёткого совпадения используйте «*», например «привет*» — совпадёт всё, что начинается с «привет»
+    * Для совпадения начала и конца используйте «когда[and]доставка» — совпадёт, если сообщение начинается с «когда» и заканчивается на «доставка»
+    * Поддержка регулярных выражений — можно использовать регулярные выражения для совпадения ключевых слов
+    * Поддержка нечёткого совпадения — можно использовать «*» для совпадения любых символов
+
+    Доступные платформы: ${
       ALL_PLATFORMS.length > 0
         ? ALL_PLATFORMS.map((platform) => platform.name)
-        : '暂无平台'
+        : 'Платформы отсутствуют'
     }`;
 
     titleCell.font = { bold: true };
@@ -456,9 +456,9 @@ export class KeywordReplyController {
 
     worksheet.getRow(1).height = 150;
 
-    worksheet.addRow(['匹配关键词', '模糊匹配', '支持正则', '平台']);
+    worksheet.addRow(['Ключевое слово для совпадения', 'Нечёткое совпадение', 'Регулярное выражение', 'Платформа']);
 
-    // 添加数据行
+    // Добавление строк данных
     autoReplies.forEach((autoReply) => {
       const name = platformMap.get(autoReply.app_id) || '';
       worksheet.addRow([
@@ -469,13 +469,13 @@ export class KeywordReplyController {
       ]);
     });
 
-    // 检查是否存在 excels 文件夹，不存在则创建
+    // Проверка существования папки excels, если не существует — создаём
     if (!fs.existsSync(`${getTempPath()}/excels`)) {
       fs.mkdirSync(`${getTempPath()}/excels`);
     }
 
-    // 保存文件
-    const filePath = `${getTempPath()}/excels/转人工-${Date.now()}.xlsx`;
+    // Сохранение файла
+    const filePath = `${getTempPath()}/excels/Перевод на оператора-${Date.now()}.xlsx`;
     await workbook.xlsx.writeFile(filePath);
 
     return filePath;

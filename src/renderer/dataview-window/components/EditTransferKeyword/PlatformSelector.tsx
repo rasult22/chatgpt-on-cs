@@ -14,7 +14,7 @@ const PlatformSelector = ({
 }: PlatformSelectorProps) => (
   <HStack width="full" alignItems="center" mb={5}>
     <Box width="30%">
-      <Text>选择平台：</Text>
+      <Text>Выберите платформу:</Text>
     </Box>
     <Box width="70%">
       <Select value={ptf || ''} onChange={(e) => setPtf(e.target.value)}>
